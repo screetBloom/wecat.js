@@ -134,6 +134,7 @@
 			callback && callback(transition)
 		}
 
+
 	}
 	//注册到window全局
 	window._$router = new spaRouters();
