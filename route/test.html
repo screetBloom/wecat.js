@@ -34,16 +34,16 @@
 </div>
 <script type="text/javascript">
 	_$router.map('/index', function (transition) {
-        $router.asyncFun('js/index.js', transition)
+        this.asyncFun('js/index.js', transition)
 	})
     _$router.map('/list', function (transition) {
-        $router.asyncFun('js/list.js', transition)
+        this.asyncFun('js/list.js', transition)
 	})
     _$router.map('/detail', function (transition) {
-		$router.asyncFun('js/detail.js', transition)
+		this.asyncFun('js/detail.js', transition)
 	})
     _$router.map('/detail2', function (transition) {
-		$router.syncFun(function (transition) {
+		this.syncFun(function (transition) {
 			document.getElementById("content").innerHTML = '<p style="color:#DD8C6F;">当前同步渲染详情页  >>>  ' + JSON.stringify(transition) + '</p>'
 		}, transition)
 	})
