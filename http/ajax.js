@@ -13,6 +13,7 @@ define('ajax', ['util?[hash]'] ,function(U){
 
     var bindFun = U.bind;
 
+
     /**
      * 参数整合url
      * @param url
