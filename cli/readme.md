@@ -4,7 +4,8 @@
 正在开发中，更新不及时请见谅   
 脚手架使用方式
 ```bash
-
+// 安装脚手架
+npm install snowcat-cli
 // 帮助命令
 snowcat -h
 // 拉取项目模板
