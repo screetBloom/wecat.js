@@ -2,6 +2,20 @@
 ### 脚手架
 
 正在开发中，更新不及时请见谅   
+脚手架使用方式
+```bash
+
+// 帮助命令
+snowcat -h
+// 拉取项目模板
+snowcat -init
+
+
+```
+
+
+
+模版内置支持
 
 - 热更新、支持es6、less或sass等
 - 利用html-webpack-plugin来生成html页面
