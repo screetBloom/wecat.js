@@ -6,10 +6,10 @@
 这个部分主要的重点
 - 核心是xhr、fetch、jsonp
 - 辅助querystring、EventEmitter
+- 我们以一个项目后台中，某些字段是共有的，如何在ajax请求时自动添加共有字段也是一个点
 
 
 注意事项
-
 - jsonp只支持异步并且只有get
 - xDomainRequest能支持POS，不过无法在body上发送数据
 - 跨域访问的时候，有时会有一个options方法的请求，只是一个探测请求
