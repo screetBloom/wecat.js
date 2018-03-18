@@ -1,0 +1,14 @@
+{
+  "name": "snowcat",
+  "version": "0.0.2",
+  "description": "my js framework 0.0.1",
+  "main": "index.js",
+  "bin": {
+    "snowcat": "bin/snowcat.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "author": "wim_chen",
+  "license": "ISC"
+}
