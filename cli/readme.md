@@ -14,7 +14,6 @@ snowcat -init
 ```
 
 
-
 模版内置支持
 
 - 热更新、支持es6、less或sass等
