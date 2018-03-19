@@ -4,15 +4,18 @@
 #### 概述
 
 目前正在开发打磨过程中，可能不会很及时的更新 ---> 3月底将基本展示出来
+下方状态显示已经完成的已经push到对应文件夹中
 
 包含内容：
-- 模板引擎
-- 路由和路由对应的钩子函数,懒加载js等
+- 脚手架 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6%7Cnpm%7Ccommander%7Cgit-0.0.1-blue.svg)
+- 模板引擎  ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%7Ctemplate%7Creg%7Cnew%20Function-0.0.1-blue.svg)
+- 路由和路由对应的钩子函数,懒加载js等 ![](https://img.shields.io/badge/router%7Clazy%20load%7Chook%20function-1.0.0-brightgreen.svg)
 - 数据和模板渲染（正在开发virtual-dom）
 - 通信组件（支持父子通信、兄弟通信、广播消息、选择性的范围广播）
 - http请求组件 （核心为xhr、fetch）
 - 各个部分以插件形式载入项目 
 
+<br>
 ---
 #### 1 脚手架揭秘和实现
 我们平时经常会使用vue、angular、react等的脚手架，都可以达到如下效果：
@@ -25,7 +28,13 @@
 <br>
 总结一下：
 脚手架能解决的问题：
-- 在任何一台电脑、任何一个文件夹中，我都可以利用脚手架的命令"snowcat init"将我的目标模板项目拉取下来
+- 在任何一台电脑、任何一个文件夹中，我都可以利用脚手架的命令将我的目标模板项目拉取下来
+```bash
+// 全局安装脚手架
+npm install -g snowcat
+// 拉取预定义模板
+snowcat init
+```
 <br>
 
 本地效果演示：
