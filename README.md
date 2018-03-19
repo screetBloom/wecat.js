@@ -37,8 +37,7 @@
 npm install -g snowcat
 // 拉取预定义模板
 snowcat init
-```
-<br>
+```   
 
 本地效果演示：
 <br>
@@ -53,13 +52,8 @@ snowcat init
 
 
 先上组织结构和代码，再讲实现方式
-cli   
-    - bin
-        - snowcat.js
-    - command
-        - init.js
-    package.json          
-   
+![](http://7xl4c6.com1.z0.glb.clouddn.com/FhwI85CdnZJUy-SICWeOOzCdt5bg)
+
 init.js
 ```bash
 
