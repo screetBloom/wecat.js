@@ -56,12 +56,76 @@ snowcat init
 #####   脚手架具体实现代码
 
 
-先上组织结构和代码，再讲实现方式    
-![](http://7xl4c6.com1.z0.glb.clouddn.com/FtssXeBajoEV6SDlWuTcCdsgq1c6)
+先上组织结构和代码，再从零开始讲实现方式和原理    
+![](http://7xl4c6.com1.z0.glb.clouddn.com/FtssXeBajoEV6SDlWuTcCdsgq1c6)    
 
-init.js
+      
+*snowcat.js* ==> 脚手架定义的所有命令的入口，这里只有init
 ```bash
+#!/usr/bin/env node
+'use strict'
+// 定义文件路径
+process.env.NODE_PATH = __dirname + '/../node_modules/'
+// 引入 commander，用于处理自定义nodejs命令
+const program = require('commander')
+// 引用package.json里面的版本号来定义当前版本
+program
+    .version(require('../package').version )
+// 定义使用方法
+program
+    .usage('<command>')
 
+// 定义init命令，同时定义init命令的简化命令 i，包括命令的脚本文件所在路径
+program
+    .command('init')
+    .description('pull a new project')
+    .alias('i')
+    .action(() => {
+        require('../command/init')()
+    })
+
+// 这一句必不可少，作用是解析命令行参数argv，这里的process.argv是nodejs全局对象的属性
+program.parse(process.argv)
+
+// 处理参数和提供帮助信息
+if(!program.args.length){
+    program.help()
+}
+
+
+```   
+    
+*init.js* ==> init 命令的定义文件
+```bash
+'use strict'
+const exec = require('child_process').exec
+const projectUrl = 'https://github.com/screetBloom/wecat.js.git'
+
+module.exports = () => {
+    console.log('this is my first commander >>>>>> ')
+
+    // git命令，远程拉取项目并自定义项目名
+    let cmdStr = `git clone `+projectUrl
+
+    // 在nodejs中执行shell命令，第一个参数是命令，第二个是具体的回调函数
+    exec(cmdStr, (error, stdout, stderr) => {
+        if (error) {
+            console.log(error)
+            process.exit()
+        }
+        console.log('pull我们的项目已经成功了')
+        process.exit()
+    })
+
+}
+
+```
+
+*package.json* ==> 在package.json文件中声明整个文件包的可执行文件的位置,让脚手架命令变成全局命令的关键；也是为了接下来发布到npm仓库中
+```bash
+"bin": {
+    "snowcat": "bin/snowcat.js"
+  }
 ```
 
 
