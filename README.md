@@ -1,4 +1,5 @@
-###  wecat.js
+wecat.js
+---
 个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）    
 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
@@ -7,7 +8,8 @@
          
          
 
-#### 概述
+概述
+---
 
 目前正在开发打磨过程中，可能不会很及时的更新 ---> *3月底将基本展示出来*
 <br>
@@ -23,7 +25,8 @@
 
 <br>
 
-####  脚手架实现导言
+脚手架实现导言
+---
 可以按照这个思路进行简单的修改就可以变成你自己的脚手架   
 我们平时经常会使用vue、angular、react等的脚手架，都可以达到如下效果
 ```bash
@@ -52,7 +55,7 @@ snowcat init
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FuN7_ko3l211kWoorHjVYR_z0pQe)
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)
 
-#####   脚手架具体实现代码
+####   脚手架具体实现代码
 
 
 先上组织结构和代码，再从零开始讲实现方式和原理    
@@ -60,7 +63,6 @@ snowcat init
 
       
 **snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
----
 ```bash
 #!/usr/bin/env node
 'use strict'
