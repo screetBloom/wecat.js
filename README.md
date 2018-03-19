@@ -22,12 +22,15 @@ wecat.js
 - 通信组件（支持父子通信、兄弟通信、广播消息、选择性的范围广播）
 - http请求组件 （核心为xhr、fetch）
 - 各个部分以插件形式载入项目 
-
-<br>
+     
+**每个部分结构都大致如下：**
+- 导言（扯淡部分）
+- 具体实现部分 
 
 1.脚手架的实现
 ---
-可以按照这个思路进行简单的修改就可以变成你自己的脚手架   
+     
+###   1.1  导言
 我们平时经常会使用vue、angular、react等的脚手架，都可以达到如下效果
 ```bash
 // 1. 全局安装对应的脚手架  "xxx-cli"  （不全局安装的话，只能在当前安装包下使用）
@@ -55,14 +58,16 @@ snowcat init
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FuN7_ko3l211kWoorHjVYR_z0pQe)
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)
 
-###   1.1  脚手架具体实现代码
+###   1.2  脚手架具体实现过程
 
+先上组织结构和代码，再从零开始讲实现方式和原理   
 
-先上组织结构和代码，再从零开始讲实现方式和原理    
+#### 1.1.1  0.0.1版本脚手架组织结构
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FtssXeBajoEV6SDlWuTcCdsgq1c6)    
 
       
-#### 1.1.1  **snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
+#### 1.1.2  实现0.0.1版本脚手架的代码
+**snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
 ```bash
 #!/usr/bin/env node
 'use strict'
@@ -90,7 +95,7 @@ if(!program.args.length){
 
 ```   
     
-####  1.1.2  **init.js** ==> init 命令的定义文件
+ **init.js** ==> init 命令的定义文件
 ```bash
 'use strict'
 const exec = require('child_process').exec
@@ -113,13 +118,14 @@ module.exports = () => {
 
 ```
 
-####  1.1.3  **package.json** ==> 在package.json文件中声明整个文件包的可执行文件的位置,让脚手架命令变成全局命令的关键；也是为了接下来发布到npm仓库中
+ **package.json** ==> 在package.json文件中声明整个文件包的可执行文件的位置
 ```bash
 "bin": {
     "snowcat": "bin/snowcat.js"
   }
 ```
 
+#### 1.1.3  实现思路
 
 
 
