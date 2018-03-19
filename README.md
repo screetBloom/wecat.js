@@ -60,7 +60,7 @@ snowcat init
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FtssXeBajoEV6SDlWuTcCdsgq1c6)    
 
       
-*snowcat.js* ==> 脚手架定义的所有命令的入口，这里只有init
+**snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
 ```bash
 #!/usr/bin/env node
 'use strict'
@@ -95,7 +95,7 @@ if(!program.args.length){
 
 ```   
     
-*init.js* ==> init 命令的定义文件
+**init.js** ==> init 命令的定义文件
 ```bash
 'use strict'
 const exec = require('child_process').exec
@@ -121,7 +121,7 @@ module.exports = () => {
 
 ```
 
-*package.json* ==> 在package.json文件中声明整个文件包的可执行文件的位置,让脚手架命令变成全局命令的关键；也是为了接下来发布到npm仓库中
+**package.json** ==> 在package.json文件中声明整个文件包的可执行文件的位置,让脚手架命令变成全局命令的关键；也是为了接下来发布到npm仓库中
 ```bash
 "bin": {
     "snowcat": "bin/snowcat.js"
