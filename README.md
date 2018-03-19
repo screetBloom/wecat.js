@@ -61,6 +61,7 @@ snowcat init
 
       
 **snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
+---
 ```bash
 #!/usr/bin/env node
 'use strict'
