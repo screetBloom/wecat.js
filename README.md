@@ -133,8 +133,8 @@ module.exports = () => {
 
 上述的3个文件主要完成了2个最基本的事情
 - 1.自定义nodejs命令。在nodejs原本肯定是没有"snowcat"这种命令的，这个是我们自定义的
-- 2.用nodejs执行shell命令（通俗讲的命令行命令），这里主要是执行了git clone 
-
+- 2.用nodejs执行shell命令（通俗讲的命令行命令），这里主要是执行了git clone     
+    
 **那么我们现在先来尝试一下，如何自定义nodejs命令**   
 在这里我们只需要引入"commander"就行   
 先说明：不引入任何包都是可以完成我们上述的两件事，引入的主要原因有2个
@@ -145,7 +145,6 @@ module.exports = () => {
 ```bash
 // PS.在nodejs中，可以直接用nodejs内置的全局变量process获取到你输入的命令的参数
 // 现在我们直接就可以利用 process.argv来获取，如定义snowcat.js文件如下：
-// 顶部的"#!/usr/bin/env node"的意思是 显式的声明这个文件用node来执行
 #!/usr/bin/env node
 let run= function (para) {
     if(para[0] === '-test'){
@@ -157,7 +156,8 @@ let run= function (para) {
 };
  console.log(process.argv)
 run(process.argv.slice(2));
-```
+```   
+**顶部的"#!/usr/bin/env node"的意思是 显式的声明这个文件用node来执行**   
 执行snowcat.js文件   
 ```bash
 node snowcat.js
