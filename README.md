@@ -174,8 +174,60 @@ version is 1.0.0
 我写这个demo是什么意思呢，现在我们就可以直接根据参数来匹配对应执行的函数了，以上面的init.js文件为例，我们直接require它执行就行了，因为它用的就是nodejs语法，和commander没什么关系    
      
 **argv返回的是一个不定长的数组，第一个是node.exe的路径，第二个是当前文件的路径，接下来是你命令后面跟的参数**    
+    
+nodejs中的process的[官方说明文档在这](http://nodejs.cn/api/process.html)   
+**这里我们就顺着这个继续了，commander等等再说**，对目前的我们来说也没到重要要偏说不可的地步      
+      
+      
+有没有注意到上面我们都是在js文件所在目录下直接 **"node snowcat.js -test" **来执行js文件，我们该如何直接"snowcat -test"就执行js文件呢 ，也就是上面我们说的**自定义nodejs命令** 
+这个时候**package.json**就需要登场了    
+```bash
+// 初始化一个package.json，相关信息自定义
+npm init
+```   
+在里面添加一行   
+```bash
+"bin": {
+    "snowcat": "snowcat.js"
+  }
+```    
+**这个是什么意思呢： 简单说就是命令名作为key，本地文件名作为value做一个映射。全局安装的时候，npm会把你定义的这个命令名"snowcat"对应的可执行文件安装到系统路径下，达到全局使用该命令的目的；本地安装的时候，会直接链接到'./node_modules/.bin/'**
 
-nodejs中的process的[官方说明文档在这](http://nodejs.cn/api/process.html)
+目前的配置信息应该基本如下：
+```bash
+{
+  "name": "snowcat",
+  "version": "0.0.1",
+  "description": "my cli 0.0.1",
+  "main": "init.js",
+  "bin": {
+    "snowcat": "snowcat.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wim_chen",
+  "license": "ISC"
+}
+
+```     
+**现在我们来尝试本地的全局的运行 "snowcat" 命令，这里需要用到 "npm link"，这里注意：是我们自己全局使用，给别人全局用可以发布到npm仓库**   
+```bash
+// 在当前的package.json中输入该命令
+npm link
+```    
+
+这个"npm link"主要是在我们本机的全局的"node_modules"目录中，生成一个符号链接"a symbolic link"指向我们当前文件夹    
+又因为我们在**package.json**中定义了"bin"，指出了全局安装的时候命令"snowcat"对应的js文件   
+现在我们在本机的任何一个地方输入"**snowcat -test -host**"都会输出下述结果：
+```bash
+[ '/usr/local/bin/node',
+  '/Users/chenwei/Desktop/工作与兴趣/common_test/command/test_one/snowcat.js',
+  '-test',
+  '-host' ]
+version is 1.0.0
+127.0.0.1
+```
 
 
 
