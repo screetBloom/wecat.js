@@ -25,7 +25,7 @@ wecat.js
 
 <br>
 
-1.脚手架的实现
+1. 脚手架的实现
 ---
 可以按照这个思路进行简单的修改就可以变成你自己的脚手架   
 我们平时经常会使用vue、angular、react等的脚手架，都可以达到如下效果
@@ -55,14 +55,14 @@ snowcat init
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FuN7_ko3l211kWoorHjVYR_z0pQe)
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)
 
-###   1.1 脚手架具体实现代码
+###   1.1  脚手架具体实现代码
 
 
 先上组织结构和代码，再从零开始讲实现方式和原理    
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FtssXeBajoEV6SDlWuTcCdsgq1c6)    
 
       
-#### **snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
+#### 1.1.1  **snowcat.js** ==> 脚手架定义的所有命令的入口，这里只有init
 ```bash
 #!/usr/bin/env node
 'use strict'
@@ -97,7 +97,7 @@ if(!program.args.length){
 
 ```   
     
-**init.js** ==> init 命令的定义文件
+####  1.1.2  **init.js** ==> init 命令的定义文件
 ```bash
 'use strict'
 const exec = require('child_process').exec
@@ -123,7 +123,7 @@ module.exports = () => {
 
 ```
 
-**package.json** ==> 在package.json文件中声明整个文件包的可执行文件的位置,让脚手架命令变成全局命令的关键；也是为了接下来发布到npm仓库中
+####  1.1.3  **package.json** ==> 在package.json文件中声明整个文件包的可执行文件的位置,让脚手架命令变成全局命令的关键；也是为了接下来发布到npm仓库中
 ```bash
 "bin": {
     "snowcat": "bin/snowcat.js"
