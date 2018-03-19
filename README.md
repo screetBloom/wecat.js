@@ -51,7 +51,7 @@ snowcat init
 #####   脚手架具体实现代码
 
 
-先上组织结构和代码，再讲实现方式
+先上组织结构和代码，再讲实现方式    
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FhwI85CdnZJUy-SICWeOOzCdt5bg)
 
 init.js
