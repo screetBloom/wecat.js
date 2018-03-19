@@ -1,16 +1,18 @@
 ###  wecat.js
 个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）  
+![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6%7Cnpm%7Ccommander%7Cgit-0.0.1-blue.svg)
+![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%7Ctemplate%7Creg%7Cnew%20Function-0.0.1-blue.svg)
+![](https://img.shields.io/badge/router%7Clazy%20load%7Chook%20function-1.0.0-brightgreen.svg)
 <br>
 #### 概述
 
 目前正在开发打磨过程中，可能不会很及时的更新 ---> 3月底将基本展示出来
 <br>
-下方状态显示已经完成的已经push到对应文件夹中
 
 包含内容：
-- 脚手架 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6%7Cnpm%7Ccommander%7Cgit-0.0.1-blue.svg)
-- 模板引擎  ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%7Ctemplate%7Creg%7Cnew%20Function-0.0.1-blue.svg)
-- 路由和路由对应的钩子函数,懒加载js等 ![](https://img.shields.io/badge/router%7Clazy%20load%7Chook%20function-1.0.0-brightgreen.svg)
+- 脚手架 
+- 模板引擎  
+- 路由和路由对应的钩子函数,懒加载js等 
 - 数据和模板渲染（正在开发virtual-dom）
 - 通信组件（支持父子通信、兄弟通信、广播消息、选择性的范围广播）
 - http请求组件 （核心为xhr、fetch）
