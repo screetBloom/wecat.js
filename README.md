@@ -2,11 +2,11 @@
 个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）    
 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
-![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)
+![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)   
+    
+         
+         
 
-      
-      
-<br>
 #### 概述
 
 目前正在开发打磨过程中，可能不会很及时的更新 ---> 3月底将基本展示出来
@@ -24,17 +24,15 @@
 <br>
 
 ---
-#### 1 脚手架揭秘和实现
+####  脚手架实现导言
 我们平时经常会使用vue、angular、react等的脚手架，都可以达到如下效果：
 1. 全局安装对应的脚手架  xxx-cli  （不全局安装的话，只能在当前安装包下使用）
 2. 接下来直接就如"vue init"就可以直接拉取一个模板项目到我们的当前文件夹
 
-这个效果挺好用的，假如我积累了一套框架，我不想每次都拷贝到其他文件夹来用，或者当别人需要的时候，我拷贝给别人一份,太麻烦了
-<br>
-我希望我有一套自己的脚手架，能像这些成熟的框架的脚手架一样直接把我想要的模板项目用最简短而有效的命令拉取到任何想要获取的电脑的文件夹中
-<br>
-总结一下：
-脚手架能解决的问题：
+这个效果挺好用的，假如我积累了一套框架，我不想每次都拷贝到其他文件夹来用，或者当别人需要的时候，我拷贝给别人一份,太麻烦了   
+我希望我有一套自己的脚手架，能像这些成熟的框架的脚手架一样直接把我想要的模板项目用最简短而有效的命令拉取到任何想要获取的电脑的文件夹中   
+总结一下：   
+脚手架能解决的问题：   
 - 在任何一台电脑、任何一个文件夹中，我都可以利用脚手架的命令将我的目标模板项目拉取下来
 ```bash
 // 全局安装脚手架
@@ -53,7 +51,7 @@ snowcat init
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FuN7_ko3l211kWoorHjVYR_z0pQe)
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)
 
-##### 1.1 脚手架具体实现代码
+#####   脚手架具体实现代码
 
 
 
