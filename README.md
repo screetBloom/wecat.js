@@ -388,7 +388,11 @@ npm install -g snowcat
 snowcat init
 ```   
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FuN7_ko3l211kWoorHjVYR_z0pQe)
-![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)
+![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)    
+     
+         
+         <br>
+0.0.1版本的脚手架分享到此结束
 
 
 
