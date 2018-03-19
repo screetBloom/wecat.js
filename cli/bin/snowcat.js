@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 'use strict'
-// 定义文件路径
-process.env.NODE_PATH = __dirname + '/../node_modules/'
 // 引入 commander，用于处理自定义nodejs命令
 const program = require('commander')
 // 引用package.json里面的版本号来定义当前版本
