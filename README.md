@@ -141,10 +141,11 @@ module.exports = () => {
 - 1.有了这个npm包，可以简化我们命令行的开发，把我们主要精力还是回归到框架开发上
 - 2.commander有大量的api，我们目前只是0.0.1版本，不依赖任何包来实现都是没有问题的，以后1.0.0的拓展还是要用它的
 
-我在这里补充一下不用任何依赖包的是实现方式：
+我在这里补充一下不用任何依赖包的实现方式：
 ```bash
-// 1.在nodejs中，可以直接用nodejs内置的全局变量process获取到你输入的命令的参数
+// PS.在nodejs中，可以直接用nodejs内置的全局变量process获取到你输入的命令的参数
 // 现在我们直接就可以利用 process.argv来获取，如定义snowcat.js文件如下：
+// 顶部的"#!/usr/bin/env node"的意思是 显式的声明这个文件用node来执行
 #!/usr/bin/env node
 let run= function (para) {
     if(para[0] === '-test'){
@@ -170,8 +171,7 @@ node snowcat.js
 version is 1.0.0
 127.0.0.1
 ```
-我写这个demo是什么意思呢，现在我们就可以直接根据参数来匹配对应执行的函数了，以上面的init.js文件为例，我们直接require它执行就行了，因为它用的就是nodejs语法，和commander没什么关系   
-
+我写这个demo是什么意思呢，现在我们就可以直接根据参数来匹配对应执行的函数了，以上面的init.js文件为例，我们直接require它执行就行了，因为它用的就是nodejs语法，和commander没什么关系     
 PS. argv返回的是一个不定长的数组，第一个是node.exe的路径，第二个是当前文件的路径，接下来是你命令后面跟的参数
 nodejs中的process的[官方说明文档在这](http://nodejs.cn/api/process.html)
 
