@@ -1,8 +1,11 @@
 ###  wecat.js
-个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）  
-![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6%7Cnpm%7Ccommander%7Cgit-0.0.1-blue.svg)
-![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%7Ctemplate%7Creg%7Cnew%20Function-0.0.1-blue.svg)
-![](https://img.shields.io/badge/router%7Clazy%20load%7Chook%20function-1.0.0-brightgreen.svg)
+个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）    
+![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
+![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
+![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)
+
+      
+      
 <br>
 #### 概述
 
