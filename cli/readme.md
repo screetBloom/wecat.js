@@ -385,7 +385,8 @@ snowcat init
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/FnfbDsCKUt8RfvNG3lQKh6d8uRzw)    
      
          
-         <br>
+<br>
+<br>
 0.0.1版本的脚手架分享到此结束
 
 
