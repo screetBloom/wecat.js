@@ -1,5 +1,5 @@
 ### 导言
-示例如test.html
+示例如test.html，1.0.0
 
 包含功能
 - 以hash为核心
