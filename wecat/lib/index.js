@@ -12,6 +12,7 @@ function wecat (options) {
     options.mounted.call(this); // 所有事情处理好后执行mounted函数
 }
 
+
 wecat.prototype = {
     proxyKeys: function (key) {
         var self = this;
