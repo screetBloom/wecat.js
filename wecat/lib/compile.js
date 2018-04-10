@@ -5,6 +5,7 @@ function Compile(el, vm) {
     this.init();
 }
 
+
 Compile.prototype = {
     init: function () {
         if (this.el) {
