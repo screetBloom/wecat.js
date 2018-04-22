@@ -141,19 +141,38 @@ run(process.argv.slice(2));
 执行snowcat.js文件   
 ```bash
 node snowcat.js
-```
+/*
 输出结果如下：
-```bash
 [ '/usr/local/bin/node',
-  '/Users/chenwei/Desktop/工作与兴趣/common_test/command/test_one/snowcat.js',
+  '/Users/chenwei/WebstormProjects/git_my/deep-in-vue/wim/test.js' ]
+*/
+node snowcat.js -test -host
+/*
+输出结果基本如下：
+[ '/usr/local/bin/node',
+  '/Users/chenwei/WebstormProjects/git_my/deep-in-vue/wim/test.js',
   '-test',
   '-host' ]
-version is 1.0.0
-127.0.0.1
+*/
 ```
-我写这个demo是什么意思呢，现在我们就可以直接根据参数来匹配对应执行的函数了，以上面的init.js文件为例   
-我们先获取到输入的参数，匹配一下执行对应的函数就行，这里可以直接require('init.js')执行就行，和commander.js无任何关系    
-     
+这里我想告诉大家的就是**process.argv**，这个东西很关键，可以拿到用户输入的命令，然后你就可以根据输入执行对应的函数就行了       
+
+先把 **console.log(process.argv)注释了，** 再来自定义指令试一试
+```bash
+node snowcat.js -test
+/*
+输出如下：
+version is 1.0.0
+*/
+node snowcat.js -host
+ /*
+ 输出如下：
+ 127.0.0.1
+ */
+```
+我写这个demo主要表示**现在我们就可以直接根据参数来匹配对应执行的函数了**，以上面的init.js文件为例   
+我们是先利用**process.argv.slice(2)** 获取到输入的参数，匹配一下执行对应的函数就行；纯node.js实现      
+    
 **argv返回的是一个不定长的数组，第一个是node.exe的路径，第二个是当前文件的路径，接下来是你命令后面跟的参数**    
     
 nodejs中的process的[官方说明文档在这](http://nodejs.cn/api/process.html)   
