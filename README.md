@@ -32,7 +32,7 @@ wecat.js
 
 1.脚手架的实现
 ---  
-**详情查看cli => readme.md**       
+**更加详细的详情，请查看cli => readme.md**       
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/Ft8EReomohPC5AcwOX320pxuiWbt)      
 
 脚手架作用： **快速搭建一个我们预定义好的模板项目结构**    
