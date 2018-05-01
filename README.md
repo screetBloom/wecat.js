@@ -9,14 +9,20 @@ wecat.js
          
 如何读vue？你知道element.UI为什么取名element吗？
 --- 
-接下来我们来回答这两个问题。
+接下来我们会具体的回答这两个问题。
 毫无疑问，任何东西在刚起步的时候都是非常简单，当然也包括Vue，而且一开始的代码更能清晰的展示出来最一开始作者的思路      
 <br>
-我相信当你读vue源代码的时候，肯定也遇到过和我一样的问题，这东西从14中后期大规模被使用以来，历时4年了。目前高度解耦的代码我是感觉很不好读的，很多时候我们都是看别人的博客和理解来读vue源码       
+我相信当你读vue源代码的时候，肯定也遇到过和我一样的问题，这东西从14中后期大规模被使用以来，历时4年了。目前高度解耦的代码我是感觉很不好读的，很多时候我们都是看别人的博客和理解来读vue源码，不仅片面还都喜欢互相抄袭       
 其实，我们自己也是可以尝试完全靠自己来理解vue的，不用去看某些人云亦云的博客     
 当我们打开[vue.js](https://github.com/vuejs/vue),你会看到
-![vue的github主页](http://7xl4c6.com1.z0.glb.clouddn.com/FiaRUXW8uTUs_m8UQL1yNyKozBwu)        
-  
+![vue的github主页](http://7xl4c6.com1.z0.glb.clouddn.com/FiaRUXW8uTUs_m8UQL1yNyKozBwu)     
+这里你会发现，即使你选"0.1"的branches，那里面的代码也是已经很系统的代码，如何从最初期的代码读起呢？        
+这个时候我们想到了commit，只要尤雨溪腿代码，每次commit都会被记录下来，而在github上如何在当前仓库展示特定的某次commit呢？比如第一次的commit        
+这个我先和大家说一下，github保存commit时是用的40位的hash值来标志某一次commit，呈现在浏览器上的url是这样子的：
+```bahs
+https://github.com/vuejs/vue/tree/83fac017f96f34c92c3578796a7ddb443d4e1f17
+```
+ 
 
 wecat.js概述
 ---
