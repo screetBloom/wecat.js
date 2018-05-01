@@ -502,7 +502,7 @@ var vm = new Vue({
  #### 指令解析，绑定
  
  ##### 1.指令解析
- 同样以 **<input v-model='counter' type='text'/>** 为例，解析即得到
+ 同样以 **&lt;input v-model='counter' type='text'/&gt;** 为例，解析即得到
  ```bash
  var directive = {
     name: 'v-model',
