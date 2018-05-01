@@ -37,7 +37,7 @@ url格式是：仓库地址+'/tree/hash值'，那么我们只要获得commit的h
 **那么现在的问题就来了，如何获取到每一次vue项目提交的commit的hash值呢？既然是github，很明显的需要借助git命令**        
 方法如下：
 -  git clone下来
--  在项目目录打开 控制台，输入“git log --oneline --decorate --graph --all”，来查看所有commit，你会发现有非常多的commit，远远大于github上统计的数字。可以输入10万直接翻到最后一个“83fac017”，那我们现在开始看看历史上的第一个版本：然后在浏览器中输入“https://github.com/vuejs/vue/tree/83fac017”在github上查看
+-  在项目目录打开 控制台，输入“git log --oneline --decorate --graph --all”，来查看所有commit，你会发现有非常多的commit，远远大于github上统计的数字。可以输入10万直接翻到最后一个“83fac017”，那我们现在开始看看历史上的第一个版本的hash，然后在浏览器中输入“https://github.com/vuejs/vue/tree/83fac017”在github上查看
 ![查看hash](http://7xl4c6.com1.z0.glb.clouddn.com/FsWUczxuJLMhHpG7qW9NbcEvv7xx)
 -  查看对应的head 的hash值，修改tree后面的值访问即可，我们找几个提交的代码来看看(test目录都是测试代码，可以不看)
 ```bash
