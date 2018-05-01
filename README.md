@@ -34,9 +34,19 @@ url格式是：仓库地址+'/tree/hash值'，那么我们只要获得commit的h
 方法如下：
 -  git clone下来
 -  在项目目录打开 控制台，输入“git log --oneline --decorate --graph --all”，来查看所有commit，你会发现有非常多的commit，远远大于github上统计的数字。可以输入10万直接翻到最后一个“83fac017”，那我们现在开始看看历史上的第一个版本：然后在浏览器中输入“https://github.com/vuejs/vue/tree/83fac017”在github上查看
--  查看对应的head 的hash值，修改tree后面的值访问即可            
-
-
+![查看hash](http://7xl4c6.com1.z0.glb.clouddn.com/FsWUczxuJLMhHpG7qW9NbcEvv7xx)
+-  查看对应的head 的hash值，修改tree后面的值访问即可，我们找几个提交的代码来看看(test目录都是测试代码，可以不看)
+```bash
+// 看看第一次提交的代码，目录结构有好几个，但是主要代码就main.js里的一句
+module.exports = 123
+// 我们再看看第三次提交的代码，很明显的src目录里已经有了三个文件directives.js、filters.js、main.js；这部分可以自己去看
+// 我们重点看一下目录'explorations/getset.html'
+var app = new Element('test', {
+    msg: 'hello'
+})
+```
+**有没有想到饿了吗前端为什么将自己的UI组件库取名"elementUI"**,猜的不错的话，应该是致敬vue；很明显看得出来，他们很早以前就知道这个方法来查看vue的历史版本，但是遗憾的是，网上很少有"授人以鱼不如授人以渔"的做法，没人去说如何合理的去看源代码，都是对源码理解的相互抄袭
+          
 
 wecat.js概述
 ---
