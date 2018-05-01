@@ -1,8 +1,6 @@
 
 **如果对您有帮助，帮忙点个star，让我有更大的动力继续分享**
-
-wecat.js
----
+<br>
 个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）    
 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
