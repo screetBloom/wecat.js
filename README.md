@@ -31,7 +31,7 @@ https://github.com/vuejs/vue/tree/83fac017f96f34c92c3578796a7ddb443d4e1f17
 // 也可以用7位hash来访问，如
 https://github.com/vuejs/vue/tree/83fac01
 ```
-url格式是：仓库地址+'/tree/hash值'，那么我们只要获得commit的hash值，就可以读到vue从第一个提交到现在的所有版本的代码，不会有任何一楼        
+url格式是：仓库地址+'/tree/hash值'，那么我们只要获得commit的hash值，就可以读到vue从第一个提交到现在的所有版本的代码，不会有任何遗漏        
 其实上述的url就是vue第一次提交的源代码，我们看图，注意标注的第一次提交：
 ![vue的第一次提交](http://7xl4c6.com1.z0.glb.clouddn.com/FnMSjLvqUx99YYk4Jy2k3L5VUhkn)        
 **那么现在的问题就来了，如何获取到每一次vue项目提交的commit的hash值呢？既然是github，很明显的需要借助git命令**        
