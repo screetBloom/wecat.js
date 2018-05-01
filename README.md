@@ -1,3 +1,6 @@
+
+**如果对您有帮助，帮忙点个star，让我有更大的动力继续分享**
+
 wecat.js
 ---
 个人开发的一个js框架，欢迎提各种类型的issue，看到第一时间会回复   ：）    
@@ -16,13 +19,17 @@ wecat.js
 其实，我们自己也是可以尝试完全靠自己来理解vue的，不用去看某些人云亦云的博客     
 当我们打开[vue.js](https://github.com/vuejs/vue),你会看到
 ![vue的github主页](http://7xl4c6.com1.z0.glb.clouddn.com/FiaRUXW8uTUs_m8UQL1yNyKozBwu)     
-这里你会发现，即使你选"0.1"的branches，那里面的代码也是已经很系统的代码，如何从最初期的代码读起呢？        
-这个时候我们想到了commit，只要尤雨溪腿代码，每次commit都会被记录下来，而在github上如何在当前仓库展示特定的某次commit呢？比如第一次的commit        
+这里你会发现，即使你选"0.1"的branches，那里面的代码也已经是中后期很系统的代码了，那么如何从最最最初期的代码读起呢？        
+这个时候我们想到了commit，只要尤雨溪推代码，每次commit都会被记录下来，而在github上如何在当前仓库展示特定的某次commit呢？比如第一次的commit        
 这个我先和大家说一下，github保存commit时是用的40位的hash值来标志某一次commit，呈现在浏览器上的url是这样子的：
 ```bahs
 https://github.com/vuejs/vue/tree/83fac017f96f34c92c3578796a7ddb443d4e1f17
 ```
- 
+url格式是：仓库地址+'/tree/hash值'，那么我们只要获得commit的hash值，就可以读到vue从第一个提交到现在的所有版本的代码，不会有任何一楼        
+其实上述的url就是vue第一次提交的源代码，我们看图，注意标注的第一次提交：
+![vue的第一次提交](http://7xl4c6.com1.z0.glb.clouddn.com/FnMSjLvqUx99YYk4Jy2k3L5VUhkn)        
+
+
 
 wecat.js概述
 ---
