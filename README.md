@@ -5,10 +5,20 @@ wecat.js
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)   
     
+**vue毫不疑问是我们写框架时借鉴的核心，但是据我观察，其实很多人是不会读这种成熟的库、框架的，所以在这里先和大家说一下如何读vue**
          
-         
+如何读vue？你知道element.UI为什么取名element吗？
+--- 
+接下来我们来回答这两个问题。
+毫无疑问，任何东西在刚起步的时候都是非常简单，当然也包括Vue，而且一开始的代码更能清晰的展示出来最一开始作者的思路      
+<br>
+我相信当你读vue源代码的时候，肯定也遇到过和我一样的问题，这东西从14中后期大规模被使用以来，历时4年了。目前高度解耦的代码我是感觉很不好读的，很多时候我们都是看别人的博客和理解来读vue源码       
+其实，我们自己也是可以尝试完全靠自己来理解vue的，不用去看某些人云亦云的博客     
+当我们打开[vue.js](https://github.com/vuejs/vue),你会看到
+![vue的github主页](http://7xl4c6.com1.z0.glb.clouddn.com/FiaRUXW8uTUs_m8UQL1yNyKozBwu)        
+  
 
-概述
+wecat.js概述
 ---
 
 目前正在开发打磨过程中，可能不会很及时的更新 ---> **近期将基本展示出来,核心代码在wecat目录**
