@@ -58,6 +58,7 @@ var app = new Element('test', {
 wecat.js概述
 ---
 
+
 目前正在开发打磨过程中，可能不会很及时的更新 ---> **近期将基本展示出来,核心代码在wecat目录**
 <br>
 
