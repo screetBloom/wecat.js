@@ -1,21 +1,32 @@
 
-let object = {}, test = 'test'
-Object.defineProperty(object, 'test', {
-    configurable: true,            // 描述该属性的描述符能否被改变，默认值为 false
-    enumerable: true,               // 能否被遍历，比如 for in，默认值为 false
-    get: function(){                // 取值的时候调用，object.test，默认值为 false
-        console.log('enter get')
-        return test
-    },
-    set: function(newValue){        // 设置值的时候使用
-        console.log('enter set')
-        test = newValue
-    }
-})
+/*
+    普通对象劫持
+*/
+function observe(obj, key) {
+    let old = obj[key]
+    Object.defineProperty(obj, key, {
+        enumerable: true,
+        configurable: true,
+        get: function() {
+            return old
+        },
+        set: function(now) {
+            if(now !== old) {
+                console.log(`${old} ---> ${now}`)
+                old = now
+            }
+        }
+    })
+}
 
-object.test
+//demo
+var obj = {
+    name: 'mi'
+}
 
-object.test = 'test4'
+observe(obj, 'name')
+obj.name = 'mirone'
+
 
 
 
