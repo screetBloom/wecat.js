@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="cl1">
+    <div class="cl2"></div>
+    <ul class="cl3">
+        <li>aa</li>
+        <li>bb</li>
+        <li>cc</li>
+    </ul>
+</div>
+
+<script>
+
+    let node = document.querySelector('.cl1')
+
+    scan(node)
+
+
+    function scan(node) {
+        console.log(node)
+        for(let i = 0; i < node.children.length; i++) {
+            const _thisNode  = node.children[i]
+            console.log(_thisNode)
+            if(_thisNode.children.length) {
+                scan(_thisNode)
+            }
+        }
+    }
+</script>
+
+
+</body>
+</html>
