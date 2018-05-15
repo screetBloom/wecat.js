@@ -14,7 +14,7 @@ Object.defineProperty(object, 'test', {
 })
 
 object.test
-object.test = 'test2'
+object.test = 'test3'
 
 
 
