@@ -11,7 +11,7 @@
     <ul class="cl3">
         <li>aa</li>
         <li>bb</li>
-        <li>cc</li>
+        <li data-model="user">cc</li>
     </ul>
 </div>
 
@@ -26,6 +26,7 @@
         console.log(node)
         for(let i = 0; i < node.children.length; i++) {
             const _thisNode  = node.children[i]
+            // 对节点的解析
             console.log(_thisNode)
             if(_thisNode.children.length) {
                 scan(_thisNode)
