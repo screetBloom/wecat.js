@@ -7,7 +7,7 @@ let _isType = require('../util/type')
 function observer(obj, key, callback) {
     let old = obj[key]
     if (_isType(old,'object')) {
-        // console.log(old,_isType(old,'object'))
+        // 只有对象需要递归
         observeAllKey(old, callback)
     }
     else if(_isType(old,'array')){
@@ -42,15 +42,17 @@ function observeArray(arr, callback) {
             configurable: true,
             value: function(...arg) {
                 let _this = this
+                // slice可以返回一个新的数组，防止引用原对象
                 let old = arr.slice()
                 let now = arrayProto[method].call(_this, ...arg)
-                console.log(arr.slice(),'  arr  _this   ',this,' > ',arrayProto[method],' > ',...arg)
+                // console.log(arr.slice(),'  arr  _this   ',this,' > ',arrayProto[method],' > ',...arg)
                 !!callback&&callback(old, _this, ...arg)
                 return now
             },
         })
     })
     arr.__proto__ = hackProto
+    // console.log(hackProto)
 }
 
 function observeAllKey(obj, callback) {
@@ -79,7 +81,7 @@ observer(obj, 'children')
 // obj.children.age = 15
 // obj.children.name = 'middle tom'
 // obj.children.children.name = 'wahaha'
-obj.children.children.friends.push('xiaoming ','liang')
+obj.children.children.friends.push('xiaoming ','liang','wang')
 
 
 
