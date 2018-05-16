@@ -2,6 +2,8 @@
 /*
     对象劫持
 */
+let _isType = require('../util/type')
+
 function observeAllKey(obj, callback) {
     Object.keys(obj).forEach(function(key){
         observer(obj, key, callback)
@@ -10,7 +12,8 @@ function observeAllKey(obj, callback) {
 
 function observer(obj, key, callback) {
     let old = obj[key]
-    if (old.toString() === '[object Object]') {
+    if (_isType(old,'object')) {
+        console.log(' old object > ',_isType(old,'object'))
         observeAllKey(old, callback)
     } else {
         Object.defineProperty(obj, key, {
@@ -33,11 +36,18 @@ function observer(obj, key, callback) {
 
 //demo
 var obj = {
-    name: 'mi'
+    name: 'mi',
+    children: {
+        name: 'little tom',
+        age: 14
+    }
 }
 
-observer(obj, 'name')
-obj.name = 'mirone'
+// observer(obj, 'name')
+// obj.name = 'mirone'
+observer(obj, 'children')
+obj.children.age = 15
+obj.children.name = 'middle tom'
 
 
 

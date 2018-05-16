@@ -1,7 +1,22 @@
 /*
+
+常用类型：
+    [object Object] => toLowerCase =>  [object object]
+    [object array]
+    [object function]
+    [object string]
+    [object number]
+    [object boolean]
+    [object date]
+    [object null]
+    [object undefined]
+    [object regexp]
+
+使用方式:
 if (isType(target, "array")) {
     lastArr = target;
 }
+
 */
 
 function _isType(target, type) {
@@ -10,6 +25,10 @@ function _isType(target, type) {
         "[object " + type + "]"
     );
 }
+
+
+// export default {_isType}
+module.exports=_isType
 
 
 
