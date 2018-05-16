@@ -47,6 +47,7 @@ function observeArray(arr, callback) {
                 let now = arrayProto[method].call(_this, ...arg)
                 // console.log(arr.slice(),'  arr  _this   ',this,' > ',arrayProto[method],' > ',...arg)
                 !!callback&&callback(old, _this, ...arg)
+
                 return now
             },
         })
