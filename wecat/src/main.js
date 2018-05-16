@@ -7,7 +7,7 @@ let _isType = require('../util/type')
 function observer(obj, key, callback) {
     let old = obj[key]
     if (_isType(old,'object')) {
-        console.log(old,_isType(old,'object'))
+        // console.log(old,_isType(old,'object'))
         observeAllKey(old, callback)
     }
     else if(_isType(old,'array')){
@@ -41,10 +41,11 @@ function observeArray(arr, callback) {
             enumerable: true,
             configurable: true,
             value: function(...arg) {
-                let me = this
+                let _this = this
+                console.log('arr  _this   ',this)
                 let old = arr.slice()
-                let now = arrayProto[method].call(me, ...arg)
-                callback(old, me, ...arg)
+                let now = arrayProto[method].call(_this, ...arg)
+                !!callback&&callback(old, _this, ...arg)
                 return now
             },
         })
@@ -66,7 +67,8 @@ var obj = {
         name: 'little tom',
         age: 14,
         children: {
-            name: 'grand children  tom'
+            name: 'grand children  tom',
+            friends: ['zhangsan']
         }
     }
 }
@@ -74,9 +76,12 @@ var obj = {
 // observer(obj, 'name')
 // obj.name = 'mirone'
 observer(obj, 'children')
-obj.children.age = 15
-obj.children.name = 'middle tom'
-obj.children.children.name = 'wahaha'
+// obj.children.age = 15
+// obj.children.name = 'middle tom'
+// obj.children.children.name = 'wahaha'
+obj.children.children.friends.push('xiaoming ')
+console.log(obj.children.children.friends)
+
 
 
 
