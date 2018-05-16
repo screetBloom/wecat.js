@@ -31,6 +31,7 @@ function observer(obj, key, callback) {
 }
 
 function observeArray(arr, callback) {
+    // 复制数组的原型方法,防止污染
     const arrayProto = Array.prototype
     const hackProto = Object.create(Array.prototype);
     [
