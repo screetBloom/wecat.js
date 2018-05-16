@@ -44,7 +44,7 @@ function observeArray(arr, callback) {
                 let _this = this
                 let old = arr.slice()
                 let now = arrayProto[method].call(_this, ...arg)
-                console.log('arr  _this   ',this,arrayProto[method],...arg)
+                console.log(arr.slice(),'  arr  _this   ',this,' > ',arrayProto[method],' > ',...arg)
                 !!callback&&callback(old, _this, ...arg)
                 return now
             },
@@ -79,8 +79,7 @@ observer(obj, 'children')
 // obj.children.age = 15
 // obj.children.name = 'middle tom'
 // obj.children.children.name = 'wahaha'
-obj.children.children.friends.push('xiaoming ')
-console.log(obj.children.children.friends)
+obj.children.children.friends.push('xiaoming ','liang')
 
 
 
