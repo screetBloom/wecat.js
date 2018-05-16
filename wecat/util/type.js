@@ -11,10 +11,11 @@
     [object null]
     [object undefined]
     [object regexp]
+    [object window]
 
 使用方式:
 if (isType(target, "array")) {
-    lastArr = target;
+    ......
 }
 
 */
