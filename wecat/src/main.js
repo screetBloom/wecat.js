@@ -42,9 +42,9 @@ function observeArray(arr, callback) {
             configurable: true,
             value: function(...arg) {
                 let _this = this
-                console.log('arr  _this   ',this)
                 let old = arr.slice()
                 let now = arrayProto[method].call(_this, ...arg)
+                console.log('arr  _this   ',this,arrayProto[method],...arg)
                 !!callback&&callback(old, _this, ...arg)
                 return now
             },
