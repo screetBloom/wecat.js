@@ -52,7 +52,6 @@ function observeArray(arr, callback) {
         })
     })
     arr.__proto__ = hackProto
-    // console.log(hackProto)
 }
 
 function observeAllKey(obj, callback) {
