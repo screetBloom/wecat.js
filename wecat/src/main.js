@@ -1,15 +1,15 @@
 /*
     对象劫持
 */
-let _isType = require('../util/type')
+let _isType_ = require('../util/type')
 
 function observer(obj, key, callback) {
     let old = obj[key]
-    if (_isType(old, 'object')) {
+    if (_isType_(old, 'object')) {
         // 只有对象需要递归
         observeAllKey(old, callback)
     }
-    else if (_isType(old, 'array')) {
+    else if (_isType_(old, 'array')) {
         observeArray(old, callback)
     } else {
         Object.defineProperty(obj, key, {
@@ -40,6 +40,7 @@ function observeArray(arr, callback) {
         'shift',
         'unshift',
         'splice',
+        'slice',
         'sort',
         'reverse'
     ].forEach(function (method) {
@@ -47,7 +48,7 @@ function observeArray(arr, callback) {
             writable: true,
             enumerable: true,
             configurable: true,
-            value: function (...arg) {
+            value: function (...arg) {  // ...arg：解构写法，表示接受任意多的变量
                 let _this = this
                 // slice可以返回一个新的数组，防止引用原对象
                 let old = arr.slice()
@@ -61,6 +62,7 @@ function observeArray(arr, callback) {
     arr.__proto__ = hackProto
 }
 
+// 只有对象嵌套需要递归
 function observeAllKey(obj, callback) {
     Object.keys(obj).forEach(function (key) {
         observer(obj, key, callback)

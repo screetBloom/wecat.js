@@ -20,7 +20,7 @@ if (isType(target, "array")) {
 
 */
 
-function _isType(target, type) {
+function _isType_(target, type) {
     return (
         Object.prototype.toString.call(target).toLowerCase() ===
         "[object " + type + "]"
@@ -29,7 +29,7 @@ function _isType(target, type) {
 
 
 // export default {_isType}
-module.exports=_isType
+module.exports=_isType_
 
 
 
