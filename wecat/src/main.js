@@ -4,7 +4,8 @@
 let _isType_ = require('../util/type')
 
 function observer(obj, key, callback) {
-    let old = obj[key]
+    let old = obj[key],
+        dep = new Dep();
     if (_isType_(old, 'object')) {
         // 只有对象需要递归
         observeAllKey(old, callback)
@@ -53,7 +54,7 @@ function observeArray(arr, callback) {
                 // slice可以返回一个新的数组，防止引用原对象
                 let old = arr.slice()
                 let now = arrayProto[method].call(_this, ...arg)
-                console.log(arr.slice(),'  arr  _this   ',this,' > ',arrayProto[method],' > ',...arg)
+                console.log(arr.slice(), '  arr  _this   ', this, ' > ', arrayProto[method], ' > ', ...arg)
                 !!callback && callback(old, _this, ...arg)
                 return now
             },
@@ -68,6 +69,22 @@ function observeAllKey(obj, callback) {
         observer(obj, key, callback)
     })
 }
+
+// 发布中心dep
+function Dep() {
+    this.subs = [];
+}
+
+Dep.prototype = {
+    addSub: function (sub) {
+        this.subs.push(sub);
+    },
+    notify: function () {
+        this.subs.forEach(function (sub) {
+            sub.update();
+        });
+    }
+};
 
 
 //demo
