@@ -1,8 +1,10 @@
-/**
- *
- * User: wim_chen
- * Date: 2018/5/17
- * Time: 下午8:46
- *
- */
+import { initMixin } from './init'
+
+function Vue (options) {
+    this._init(options)
+}
+
+initMixin(Vue)
+
+export default Vue
 

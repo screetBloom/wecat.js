@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": ""
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "test": "karma start"
   },
   "author": "wim",
   "license": "ISC",
