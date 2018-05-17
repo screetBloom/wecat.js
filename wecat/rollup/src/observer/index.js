@@ -1,8 +1,20 @@
-/**
- *
- * User: wim_chen
- * Date: 2018/5/17
- * Time: 下午8:53
- *
- */
+import {
+    hasOwn,
+    isObject
+}
+    from '../util/index'
+
+export function observe (value){
+    if (!isObject(value)) {
+        return
+    }
+    var ob
+    if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
+        ob = value.__ob__
+    } else {
+        ob = new Observer(value)
+    }
+    return ob
+}
+
 
