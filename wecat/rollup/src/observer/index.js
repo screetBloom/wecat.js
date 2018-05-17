@@ -1,7 +1,8 @@
 import {
     def, //new
     hasOwn,
-    isObject
+    isObject,
+    isType
 }
     from '../util/index'
 
