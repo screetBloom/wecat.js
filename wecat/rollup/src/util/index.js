@@ -16,7 +16,12 @@ export function def (obj, key, val, enumerable) {
     })
 }
 
-
+export function _isType_(target, type) {
+    return (
+        Object.prototype.toString.call(target).toLowerCase() ===
+        "[object " + type + "]"
+    );
+}
 
 
 
