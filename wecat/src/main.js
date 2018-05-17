@@ -17,14 +17,18 @@ function observer(obj, key, callback) {
             enumerable: true,
             configurable: true,
             get: function () {
+                dep.addSub()
                 return old
             },
             set: function (now) {
-                if (now !== old) {
-                    console.log(`${old} ---> ${now}`)
-                    !!callback && callback(old, now)
-                    old = now
+                if (now === old) {
+                    return
                 }
+                console.log(`${old} ---> ${now}`)
+                !!callback && callback(old, now)
+                old = now
+                // 通知所有订阅者
+                dep.notify()
             }
         })
     }
@@ -70,6 +74,7 @@ function observeAllKey(obj, callback) {
     })
 }
 
+
 // 发布中心dep
 function Dep() {
     this.subs = [];
@@ -85,6 +90,7 @@ Dep.prototype = {
         });
     }
 };
+
 
 
 //demo
