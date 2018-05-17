@@ -7,5 +7,9 @@
     "dev": ""
   },
   "author": "wim",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^0.59.1",
+    "rollup-watch": "^4.3.1"
+  }
 }
