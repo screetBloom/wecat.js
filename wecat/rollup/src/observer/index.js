@@ -1,20 +1,14 @@
 import {
+    def, //new
     hasOwn,
     isObject
 }
     from '../util/index'
 
-export function observe (value){
-    if (!isObject(value)) {
-        return
-    }
-    var ob
-    if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
-        ob = value.__ob__
-    } else {
-        ob = new Observer(value)
-    }
-    return ob
+export function Observer(value) {
+    this.value = value
+    this.dep = new Dep()
+    this.walk(value)
+    def(value, '__ob__', this)
 }
-
 
