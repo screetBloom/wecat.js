@@ -28,6 +28,7 @@ snowcat init
 ```        
 
 ####  0.0.1版本完整代码
+**snowcat.js**
 ```bash
 #!/usr/bin/env node
 'use strict'
@@ -50,7 +51,7 @@ if(!program.args.length){
 }
 ```   
     
- **init.js** ==> init 命令的定义文件
+ **init.js**
 ```bash
 'use strict'
 const exec = require('child_process').exec
