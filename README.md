@@ -1,23 +1,13 @@
-<br>
-已完成列表
 
 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)   
 
-<br>
-
-vue毫不疑问是我们写框架时借鉴的核心，**但是据我观察，其实很多人是不会读这种成熟的库、框架的**
-<br>
-所以在这里先和大家说一下如何读vue => [https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly](https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly)
-         
-           
+[从阅读Vue的第一个commit开始](https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly)
 
 wecat.js概述
 ---
 
-
-目前正在开发打磨过程中，可能不会很及时的更新 ---> **近期将基本展示出来,核心代码在wecat目录**
 <br>
 包含内容：
 - 脚手架 
