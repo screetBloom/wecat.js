@@ -2,7 +2,7 @@
 <br>
 <br>
 已完成列表
---- 
+
 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)   
@@ -21,22 +21,13 @@ wecat.js概述
 
 目前正在开发打磨过程中，可能不会很及时的更新 ---> **近期将基本展示出来,核心代码在wecat目录**
 <br>
-
 包含内容：
-- 脚手架：要让其他人能仅通过简单的一个脚手架命令，就能把项目按分类拉下来
-- 模板引擎  
-- 路由和路由对应的钩子函数,懒加载js等 
-- 数据和模板渲染（正在开发virtual-dom）
-- 通信组件（支持父子通信、兄弟通信、广播消息、选择性的范围广播）
-- http请求组件 （核心为xhr、fetch）
-- UI类库（参考eleUI）
-- 各个部分以插件形式载入项目 
-     
-**下述5个大部分，每个部分结构都大致如下：**
-- 导言（扯淡部分，可以直接跳过）
-- 具体实现部分      
-**各个模块的详细介绍一般放在各个模块内部**
-
+- 脚手架 
+- 数据和模板渲染
+- 路由
+- 通信组件
+- http请求组件 
+- UI类库
 
 1.脚手架的实现
 ---  
