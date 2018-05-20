@@ -1,5 +1,3 @@
-
-<br>
 <br>
 已完成列表
 
@@ -11,7 +9,7 @@
 
 vue毫不疑问是我们写框架时借鉴的核心，**但是据我观察，其实很多人是不会读这种成熟的库、框架的**
 <br>
-所以在这里先和大家说一下如何读vue => []()
+所以在这里先和大家说一下如何读vue => [https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly](https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly)
          
            
 
@@ -31,7 +29,7 @@ wecat.js概述
 
 1.脚手架的实现
 ---  
-**更加详细教程，请查看目录cli => readme.md** => [https://github.com/screetBloom/wecat.js/tree/master/cli](https://github.com/screetBloom/wecat.js/tree/master/cli)
+**多种实现教程，查看cli目录** => [https://github.com/screetBloom/wecat.js/tree/master/cli](https://github.com/screetBloom/wecat.js/tree/master/cli)
 
 ```bash
 // 全局安装脚手架
@@ -40,8 +38,7 @@ npm install -g snowcat
 snowcat init
 ```        
 
-####  实现0.0.1版本脚手架的完整代码
-**snowcat.js** ==> 脚手架定义的所有命令的入口，这里暂时只有init命令
+####  0.0.1版本完整代码
 ```bash
 #!/usr/bin/env node
 'use strict'
