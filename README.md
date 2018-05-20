@@ -78,38 +78,26 @@ module.exports = () => {
      
 2.响应式实现
 ---
-响应式代码主要在wecat>lib文件夹里面      
-我们目前定义的"响应式"其实主要是指在对对象属性进行修改时可以直接的将视图进行响应式的变化   
+![](http://7xl4c6.com1.z0.glb.clouddn.com/FlMbhCl5co5FJuK9-1WGrHnNWEyg)
 思路：   
 - 采用方法使对象是可观察变化的
 - 观察对象所有属性
 - 对属性进行读时，收集依赖关系
 - 对属性进行写时，更新视图
 
-
-
 3.模板引擎
 ---
-
 目前的模板引擎比较不满意，暂时不会进行讲解；正在进行virtual-template的开发
-
-
-<br>
-<br>        
+![](http://7xl4c6.com1.z0.glb.clouddn.com/FmDOukoz7CpP0aOXyyvtuGBx3idR)     
 
 4.路由
 ---
-
 路由属于已经开发结束的，但是目前没有更多的精力进行这一块的详细讲述，主要还是集中在框架剩余功能的开发上；一个框架首先不管怎么样要能跑起来    
 另外，一旦组件化和数据渲染的方式向virtual-dom靠拢，路由需要跟着进行对应的修改，目前的路由还不满足virtual-dom的渲染要求  
-<br>
-<br>
-<br>
-<br>
 
 综合实现
 ---
-**vue毫不疑问是借鉴的核心，这里放一点自己的思路，详情看目录** => [https://github.com/screetBloom/wecat.js/tree/master/wecat](https://github.com/screetBloom/wecat.js/tree/master/wecat)     
+**初始小demo** => [demo代码](https://github.com/screetBloom/wecat.js/tree/master/wecat)     
 
       
 
