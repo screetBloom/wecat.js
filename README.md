@@ -18,7 +18,7 @@ wecat.js概述
 
 1.脚手架的实现
 ---  
-**多种实现自定义脚手架教程，查看cli目录** => [https://github.com/screetBloom/wecat.js/tree/master/cli](https://github.com/screetBloom/wecat.js/tree/master/cli)
+**两种实现自定义脚手架教程，查看cli目录** => [https://github.com/screetBloom/wecat.js/tree/master/cli](https://github.com/screetBloom/wecat.js/tree/master/cli)
 
 ```bash
 // 全局安装脚手架
