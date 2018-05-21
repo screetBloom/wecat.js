@@ -79,6 +79,7 @@ module.exports = () => {
 2.响应式实现
 ---
 ![](http://7xl4c6.com1.z0.glb.clouddn.com/Fu3WDr8EtxG0pGJgWA1USXzLBuc_)     
+![](http://7xl4c6.com1.z0.glb.clouddn.com/Fm-g5zsv1HXopfJhWao6JYoW1Ugm)
 思路：   
 - 采用方法使对象是可观察变化的
 - 观察对象所有属性
@@ -88,7 +89,8 @@ module.exports = () => {
 3.模板引擎
 ---
 目前的模板引擎比较不满意，暂时不会进行讲解；正在进行virtual-template的开发
-![](http://7xl4c6.com1.z0.glb.clouddn.com/FmDOukoz7CpP0aOXyyvtuGBx3idR)     
+![](http://7xl4c6.com1.z0.glb.clouddn.com/FmDOukoz7CpP0aOXyyvtuGBx3idR)   
+![](http://7xl4c6.com1.z0.glb.clouddn.com/Fpq5bEp2oZPPBXPsHwpFc1wshiOj)  
 
 4.路由
 ---
