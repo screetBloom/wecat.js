@@ -1,30 +1,45 @@
-function wecat (options) {
+"use strict";
+
+/* ======= Global Variables ======= */
+var directives = {};
+var specialDirectives = {};
+var components = {};
+var id = 0;
+
+//=require util/util.js
+
+/* ======= Compiler ======= */
+//=require compiler/lexer.js
+//=require compiler/parser.js
+//=require compiler/generator.js
+//=require compiler/compiler.js
+
+function Moon(opts) {
+    /* ======= Initial Values ======= */
+    this.$opts = opts || {};
+
     var self = this;
-    this.data = options.data;
-    this.methods = options.methods;
 
-    Object.keys(this.data).forEach(function(key) {
-        self.proxyKeys(key);
-    });
+    this.$id = id++;
 
-    observe(this.data);
-    new Compile(options.el, this);
-    options.mounted.call(this); // 所有事情处理好后执行mounted函数
+    this.$name = this.$opts.name || "root";
+    this.$parent = this.$opts.parent || null;
+    this.$data = this.$opts.data || {};
+    this.$render = this.$opts.render || noop;
+    this.$hooks = this.$opts.hooks || {};
+    this.$methods = this.$opts.methods || {};
+    this.$events = {};
+    this.$dom = {};
+    this.$destroyed = false;
+    this.$initialRender = true;
+    this.$queued = false;
+
+    //=require directives/default.js
+
+    /* ======= Initialize 🎉 ======= */
+    this.init();
 }
 
+//=require instance/methods.js
 
-wecat.prototype = {
-    proxyKeys: function (key) {
-        var self = this;
-        Object.defineProperty(this, key, {
-            enumerable: false,
-            configurable: true,
-            get: function getter () {
-                return self.data[key];
-            },
-            set: function setter (newVal) {
-                self.data[key] = newVal;
-            }
-        });
-    }
-}
+//=require global/api.js
