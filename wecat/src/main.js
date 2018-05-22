@@ -106,6 +106,7 @@ var obj = {
     }
 }
 
+
 // observer(obj, 'name')
 // obj.name = 'mirone'
 observer(obj, 'children')
