@@ -14,6 +14,7 @@ var id = 0;
 //=require compiler/generator.js
 //=require compiler/compiler.js
 
+
 function Moon(opts) {
     /* ======= Initial Values ======= */
     this.$opts = opts || {};
