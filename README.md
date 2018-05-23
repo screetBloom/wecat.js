@@ -5,7 +5,7 @@
 
 Vue.js科学阅读方式 => [从阅读Vue的第一个commit开始](https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly)
 
-wecat.js概述
+wecat.js => 响应式组件系统
 ---
 
 包含内容：
