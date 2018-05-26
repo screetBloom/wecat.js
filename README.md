@@ -101,7 +101,7 @@ module.exports = () => {
 综合实现
 ---
 **初始小demo**    
-![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FmOhUjHBuON6Nk61T2M3SXdAQJLC)  
+![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FvjdO6Dpd8dKIizCzcsI5zhvygpd)  
 
       
 
