@@ -1,7 +1,7 @@
 /*
     对象劫持
 */
-let _isType_ = require('../util/type')
+let _isType_ = require('./../util/type')
 
 function observer(obj, key, callback) {
     let old = obj[key],
