@@ -99,10 +99,14 @@ module.exports = () => {
 
 5.Web Components 
 ---
-- Custom Elements
-- HTML Imports
-- HTML Templates
-- Shadow DOM
+- Custom Elements: 提供自定义元素和标签的能力
+    - registerElement(需用 - 连接)
+    - 生命周期和回调
+    - 扩展元素
+- HTML Templates: 组件模板
+- HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
+    - HTMLLinkElement
+- Shadow DOM: 处理组件间代码隔离的问题
 
 
 综合实现
