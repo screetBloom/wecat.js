@@ -97,6 +97,13 @@ module.exports = () => {
 另外，一旦组件化和数据渲染的方式向virtual-dom靠拢，路由需要跟着进行对应的修改，目前的路由还不满足virtual-dom的渲染要求          
 - 预计可能的实现方式是：hash结合动态组件去实现      
 
+5.Web Components 
+---
+- Custom Elements
+- HTML Imports
+- HTML Templates
+- Shadow DOM
+
 
 综合实现
 ---
