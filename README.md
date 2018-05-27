@@ -102,7 +102,7 @@ module.exports = () => {
 5.Web Components 
 ---
 - Custom Elements: 提供自定义元素和标签的能力
-    - registerElement(需用 - 连接)
+    - registerElement(需用"-"连接)
     - 生命周期和回调
     - 扩展元素
 - HTML Templates: 组件模板
