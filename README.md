@@ -97,11 +97,6 @@ module.exports = () => {
 另外，一旦组件化和数据渲染的方式向virtual-dom靠拢，路由需要跟着进行对应的修改，目前的路由还不满足virtual-dom的渲染要求          
 - 预计可能的实现方式是：hash结合动态组件去实现      
 
-1.0综合实现示意图
----
-**初始小demo**    
-![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FvjdO6Dpd8dKIizCzcsI5zhvygpd)  
-
 5.Web Components 
 ---
 - Custom Elements: 提供自定义元素和标签的能力
@@ -112,6 +107,13 @@ module.exports = () => {
 - HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
     - HTMLLinkElement
 - Shadow DOM: 处理组件间代码隔离的问题
+
+
+1.0综合实现示意图
+---
+**初始小demo**    
+![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FvjdO6Dpd8dKIizCzcsI5zhvygpd)  
+
 
 
 
