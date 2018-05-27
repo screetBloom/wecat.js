@@ -95,7 +95,9 @@ module.exports = () => {
 ---
 路由属于已经开发结束的，但是目前没有更多的精力进行这一块的详细讲述，主要还是集中在框架剩余功能的开发上；一个框架首先不管怎么样要能跑起来    
 另外，一旦组件化和数据渲染的方式向virtual-dom靠拢，路由需要跟着进行对应的修改，目前的路由还不满足virtual-dom的渲染要求          
-- 预计可能的实现方式是：hash结合动态组件去实现      
+- 预计可能的实现方式是：hash结合动态组件去实现    
+目前简单的方式：    
+![路由1.0流程示意图](http://7xl4c6.com1.z0.glb.clouddn.com/FtU7jhaCnYwbqVz4ywxh0hezHZZQ)  
 
 5.Web Components 
 ---
