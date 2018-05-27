@@ -106,7 +106,7 @@
 			}
 		},
 
-		asyncFun: function (file, transition) {
+		loadFile: function (file, transition) {
 			var self = this;
 			if (self.routers[transition.path].fn) {
 				self.afterFun && self.afterFun(transition)
@@ -128,7 +128,7 @@
 			}
 		},
 
-		syncFun: function (callback, transition) {
+		loadCb: function (callback, transition) {
 
 			this.afterFun && this.afterFun(transition)
 			callback && callback(transition)
