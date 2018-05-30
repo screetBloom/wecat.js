@@ -45,7 +45,6 @@ function observeArray(arr, callback) {
         'shift',
         'unshift',
         'splice',
-        'slice',
         'sort',
         'reverse'
     ].forEach(function (method) {
