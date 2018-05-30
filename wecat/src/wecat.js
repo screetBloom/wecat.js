@@ -1,16 +1,39 @@
-import {_isType} from './util'
+import {
+    _isType,
+    _isDOMType,
+    _isDOMTagname,
+    _isDirective,
+    _trim,
+    _isEventDirective,
+    _node2Fragment,
+    _deepPath
+} from './util'
 
 export default class Cat {
     constructor (options) {
+
+        /*
+        *  @ 组件创建前的钩子
+        * */
+        !!options.beforeCreated && options.beforeCreated.call(this)
+
         /*
         *  @ 初始化时挂载预定义的数据和函数
         * */
         this.data = options.data || {}
         this.methods = options.methods
+        this.el = options.el
 
         /*
-        *  @ 将 data 对象和实例对象建立代理关系 => 主要是 this.a 就能直接获取当前实例的数据 而不是 this.data.a
-        * */
+       *  @ 子组件的挂载
+       * */
+        !!options.components && this.registerComponent(options.components,this)
+
+        this.bindMethods()
+
+        /*
+       *  @ 将 data 对象和实例对象建立代理关系 => 主要是 this.a 就能直接获取当前实例的数据 而不是 this.data.a
+       * */
         this.initProxy()
 
         /*
@@ -22,19 +45,58 @@ export default class Cat {
         *  @ 结合传入的数据编译和渲染当前组件的模板
         *  @ 后续继续拓展
         * */
-        new Compile(options.el, this)
+        new Compile(this.el, this)
 
         /*
-        *  @ 目前此处是解析完模板立即调用mounted钩子；用call可以将作用域很方便的直接指向到当前的组件中
-        *  @ 后续可以将此处剥离出去，按生命周期的各个加载时机执行
+        *  @ 解析完模板立即调用mounted钩子；用call可以将作用域很方便的直接指向到当前的组件中
         * */
-        options.mounted.call(this)
+        !!options.mounted && options.mounted.call(this)
     }
 
+    /*
+    *  @ tagName 自定义组件名
+    *  @ path 需要引入的组件地址
+    * */
+    registerComponent(components){
+        // 换一种注册方式
+        // new componentGenerator(components,parent,this.el)
+
+        let el = document.querySelector(this.el)
+        let pChildNodes = Array.from(el.childNodes),
+            pChildTags = [],
+            _el = el;
+        pChildNodes.forEach(function (node) {
+            // 元素标签
+            if(!!node.tagName ){
+                pChildTags.push(_isDOMTagname(node))
+                // 还有自元素
+                // if(node.firstChild){
+                //     Array.from(node.childNodes).forEach((n)=>{
+                //         !!n.tagName && pChildTags.push(_isDOMTagname(n))
+                //     })
+                // }
+            }
+        })
+        Object.keys(components).forEach(function (key) {
+            // 当前父组件中声明了子组件
+            if(pChildTags.includes(key)){
+                // console.log(pChildTags)
+                let oldNode = document.querySelector(key),
+                    newNode = document.createElement('div');
+                newNode.innerHTML = components[key].template;
+                _el.replaceChild(_node2Fragment(newNode), oldNode);
+
+                // 将子组件的数据和方法混入父组件
+                this.data = Object.assign(this.data,components[key].data||{})
+                this.methods = Object.assign(this.methods,components[key].methods||{})
+            }
+        }.bind(this))
+    }
     /*
     *  @ 代理当前组件的所有属性
     * */
     initProxy () {
+
         Object.keys(this.data).forEach(key => {
             this.proxyKeys(key)
         })
@@ -52,7 +114,58 @@ export default class Cat {
             }
         })
     }
+
+    bindMethods(){
+        Object.keys(this.methods).forEach((key)=>{
+            // this.methods[key]
+            this.methods[key] = this.methods[key].bind(this)
+        })
+    }
 }
+
+class componentGenerator {
+
+    constructor(components,parent,el){
+
+        this.el = document.querySelector(el)
+        this.components = components
+        this.parent = parent
+        this.init()
+    }
+
+    init(){
+        // 将子组件应用到父组件上
+        this.patch()
+    }
+
+    patch(){
+        let pChildNodes = Array.from(this.el.childNodes),
+            pChildTags = [],
+            _el = this.el,
+            _this = this;
+        pChildNodes.forEach(function (node) {
+            !!node.tagName && pChildTags.push(_isDOMTagname(node))
+        })
+        Object.keys(this.components).forEach(function (key) {
+            // 当前父组件中声明了子组件
+            if(pChildTags.includes(key)){
+                // console.log(`${key}`,_this.components[key])
+                let oldNode = document.querySelector(key),
+                    newNode = document.createElement('div');
+                newNode.innerHTML = _this.components[key].template;
+                _el.replaceChild(_node2Fragment(newNode), oldNode);
+
+                // 将子组件的数据混入父组件
+                // this.parent = Object.assign(this.parent,_this.components[key].data)
+
+            }
+
+        })
+    }
+
+}
+
+
 
 /*
 *  @ 实现一个监听器Observer，用来劫持并监听所有属性，如果有变动的，就通知订阅者
@@ -61,24 +174,23 @@ class Observer {
     constructor (data) {
         /*
         *  @ 将组件的data挂载到ob实例上
-        *  @ 遍历数据
+        *  @ 遍历data数据
         * */
         this.data = data
-        // 遍历data数据
         this.walk(data)
+        this.dep = ''
     }
 
     walk (data) {
         Object.keys(data).forEach(key => {  // 这里使用箭头函数就是为了用外面的this
-            console.log('here  >>>>   ',this.data)
-            // 子属性类型为对象
+            // // 子属性类型为对象
             if(_isType(data[key],'object')){
-                // 递归监听子属性
+                // 递归监听子属性，目前bug
                 this.walk(data[key])
             }
-            // 子属性类型为数组
+            // 子属性类型为数组，目前bug
             else if(_isType(data[key],'array')){
-                // 使数组改变时同样能够通知改变  bug
+                // 使数组改变时同样能够通知改变
                 this.observeArray(data[key])
             }
             // 子属性类型为常量
@@ -89,8 +201,10 @@ class Observer {
     }
 
     defineReactive (data, key, val) {
-        // 创建一个依赖收集中心Dep 实例
-        let dep = new Dep()
+        // 为每一个data创建一个依赖收集中心Dep 实例，初次渲染时，dep.targe为null
+        let dep = new Dep();
+        // 便于数组变动时进行唤醒
+        this.dep = dep;
         // 建立 data 和 Dep 的联系
         Object.defineProperty(data, key, {
             enumerable: true,
@@ -103,26 +217,27 @@ class Observer {
                 return val
             },
             set (newVal) {
+                // console.log('newvalue >>>  ',newVal)
                 if (newVal === val) return
-                // 有则改之
                 val = newVal
-                dep.notify(newVal)
+                // 通知当前属性的所有订阅者
+                dep.notify()
             }
         })
     }
 
-    observeArray(arr, callback) {
+    observeArray(arr) {
         // 复制数组的原型方法,防止污染
-        const arrayProto = Array.prototype
-        const hackProto = Object.create(Array.prototype);
-        // 对数组的8个方法进行监控
+        const arrayProto = Array.prototype,
+            hackProto = Object.create(Array.prototype),
+            _this = this;
+        // 对数组的7个方法进行监控
         [
             'push',
             'pop',
             'shift',
             'unshift',
             'splice',
-            'slice',
             'sort',
             'reverse'
         ].forEach(function (method) {
@@ -131,12 +246,11 @@ class Observer {
                 enumerable: true,
                 configurable: true,
                 value: function (...arg) {  // ...arg：解构写法，表示接受任意多的变量
-                    let _this = this
                     // slice可以返回一个新的数组，防止引用原对象
-                    let old = arr.slice()
-                    let now = arrayProto[method].call(_this, ...arg)
-                    console.log(arr.slice(), '  arr  _this   ', this, ' > ', arrayProto[method], ' > ', ...arg)
-                    !!callback && callback(old, _this, ...arg)
+                    let old = arr.slice(0)
+                    let now = arrayProto[method].call(this, ...arg)
+                    console.log('数组发生了改变  ',...arg)
+                    // this.dep.notify(22)
                     return now
                 },
             })
@@ -145,13 +259,9 @@ class Observer {
     }
 }
 
-
-
 class Dep {
     constructor () {
-        // 订阅者集合
-        // console.log('dep >> ',this)
-        this.subs = []
+        this.subs = []  // 订阅者集合,保存的是一个个watcher实例
     }
 
     // 添加订阅者
@@ -159,16 +269,18 @@ class Dep {
         this.subs.push(sub)
     }
 
-    // 通知订阅者
+    // 通知订阅者,即当前data的所有watcker实例
     notify () {
+        // console.log('>>>>>>   ',data)
+        // console.log(this.subs)
         this.subs.forEach(sub => {
-            sub.update()
+            sub.update()    // 更新watcher实例
         })
     }
 }
 
-// 初始化依赖
 // Dep.target存放着当前正在执行依赖收集过程的那个watcher
+// 子类target初始值和父类一致，但改变不会影响父类的target
 Dep.target = null
 
 /*
@@ -176,49 +288,87 @@ Dep.target = null
 * */
 class Watcher {
     constructor (vm, exp, cb) {
-        // 回调
+        // watcher实例更新视图的回调
         this.cb = cb
-        // 拿到当前组件的实例vm对象
+        // 保存当前组件的实例vm对象
         this.vm = vm
         // 模版解析时拿到指令或者插值中的data属性名
         this.exp = exp
-        // 将自己添加到订阅器dep中
+        /*
+        *  1 设置Dep.target的值，触发data的getter事件，将watcher实例添加进去
+        *  2 保存data上当前状态的值
+        * */
         this.value = this.get()
     }
 
     get () {
-        // 设置当前的订阅者为自己，在
+        // 设置当前的订阅者为自己，极其关键的一步
         Dep.target = this   // 缓存自己
         /*
         *  @ 模板编译时，在设置指令和插值的data时，都强制执行监听器里的get函数
         *  @ 目的是为了在model指令和'{{}}'插值的时候；手动触发当前实例.data的getter动作
         * */
         // 等价于：let value = this.data.key => 手动触发实例data的getter动作
-        let value = this.vm[this.exp]
+        let paths = this.exp.split('.'),
+            value = '';
+        if(paths.length>1){
+            // value = this.vm[paths[0]][paths[1]]
+            value = _deepPath(this.vm,this.exp)
+            console.log('test2   ',value)
+        }else{
+            // show的表达式写法
+            if(this.exp.indexOf('=')){
+                let exps = this.exp.split('=')
+                value = this.vm[_trim(exps[0])]
+            }else{
+                value = this.vm[this.exp]
+            }
+        }
+        // value = this.vm[this.exp]
         // 收集完当前依赖的订阅者之后，释放当前依赖收集的指向
         Dep.target = null
         return value
     }
 
-    // 观察者自己的行为
     update () {
-        let value = this.vm[this.exp]
-        let oldValue = this.value
-        // 更新
+        // watcher实例更新视图的过程
+        let paths = this.exp.split('.'),
+            value = '',
+            oldValue = this.value;
+        if(paths.length>1){
+            // value = this.vm[paths[0]][paths[1]]
+            value = _deepPath(this.vm,this.exp)
+            console.log('test1   ',value)
+        }else{
+            // show的表达式写法
+            if(this.exp.indexOf('=')){
+                let exps = this.exp.split('=')
+                value = this.vm[_trim(exps[0])]
+                console.log('value     ',value)
+            }else{
+                value = this.vm[this.exp]
+            }
+        }
+
         if (value !== oldValue) {
+            // 为data设置最新的值
             this.value = value
             // 给回调函数绑定作用域
+            // console.log('cb  >>> ',this.cb)
             this.cb.call(this.vm, value, oldValue)
         }
     }
+
 }
 
 /*
-*  @ 实现一个解析器Compile，可以扫描和解析每个节点的相关指令，并根据初始化模板数据以及初始化相应的订阅器
+*  @ 实现一个编译器Compile，可以扫描和解析每个节点的相关指令，并根据初始化模板数据以及初始化相应的订阅器
 * */
 class Compile {
     constructor (el, vm) {
+        // 保存当前的组件实例
         this.vm = vm
+        // 获取当前模板
         this.el = document.querySelector(el)
         this.fragment = null
         this.init()
@@ -226,9 +376,14 @@ class Compile {
 
     init () {
         if (this.el) {
-            // 创建节点
-            this.fragment = this.node2Fragment(this.el)
-            // 加工节点
+            /*
+            *  @ 直接操作this.el就会造成页面频繁的回流、重绘
+            *  @ 使用fragment复制一份组件模板，好处之一是不会多出来一个容器标签
+            * */
+            this.fragment = _node2Fragment(this.el)
+            /*
+            *  @ 解析模板指令、插值表达式
+            * */
             this.compileElement(this.fragment)
             // 使用节点
             this.el.appendChild(this.fragment)
@@ -237,132 +392,196 @@ class Compile {
         }
     }
 
-    node2Fragment (el) {
-        let fragment = document.createDocumentFragment()
-
-        // 将 DOM 元素移入 fragment 中
-        let child = el.firstChild
-        while (child) {
-            fragment.appendChild(child)
-            child = el.firstChild
-        }
-
-        return fragment
-    }
-
     // 对模板进行编译，重要部分
     compileElement (el) {
+        /*
+        *  @ 获取节点要用 childNodes，children会丢失大量节点信息
+        *  @ 将类数组对象转化为数组对象
+        * */
         let childNodes = Array.from(el.childNodes)
-        // console.log(el)
-        // console.log(el.childNodes)
-        // console.log('>>>>>   ')
-
         childNodes.forEach(node => {
             // 匹配插值表达式的正则，这里竟然不能带g，是什么鬼
-            // let reg = /\{\{(.*)\}\}/
-            let reg = /\{\{((?:.|\n)+?)\}\}/
-            let text = node.textContent
+            let reg = /\{\{((?:.|\n)+?)\}\}/,
+                text = node.textContent;   // 拿到元素节点内的文本信息，匹配插值表达式
 
-            // 细粒度绑定
-            if (this.isElementNode(node)) {
-                this.compile(node)
-            } else if (this.isTextNode(node) && reg.test(text)) {
+            // 元素节点指令的编译
+            if (_isDOMType(node) === 1) {
+                this.compileDirective(node)
+            }
+            // 插值的编译
+            else if (_isDOMType(node) === 3 && reg.test(text)) {
                 this.compileText(node, reg.exec(text)[1])
             }
 
-            // 递归处理子节点
-            if (node.childNodes != null && node.childNodes.length) {
+            // 递归处理当前节点的子节点
+            if ( !!node.childNodes && node.childNodes.length > 0 ) {
                 this.compileElement(node)
             }
         })
     }
 
-    compile (node) {
+    // 目前不允许元素内插值的写法
+    compileDirective (node) {
         let attrs = Array.from(node.attributes)
         attrs.forEach(attr => {
+            // c-model="test"  name:c-model，value:test
             let attrName = attr.name
-            // 编译指令
-            if (this.isDirective(attrName)) {
-                let expression = attr.value
-                let directive = attrName.substring(2)
-                // v-on
-                if (this.isEventDirective(directive)) {
-                    this.compileEvent(node, this.vm, expression, directive)
+            // 如果是指令(视图层呈现为自定义属性)
+            if (_isDirective(attrName)) {
+                let expression = attr.value,
+                    directive = attrName.slice(2)
+                // 事件指令，如on:click
+                if (_isEventDirective(directive)) {
+                    this.compileEvent(node, expression, directive)
                 }
-                // v-model
+                // 一般指令，如model
                 else {
-                    this.compileModel(node, this.vm, expression, directive)
+                    this.compileModelAll(node, expression, directive)
                 }
+                // 视图层呈现时，将自定义属性移除
                 node.removeAttribute(attrName)
             }
         })
     }
 
-    compileEvent (node, vm, exp, dir) {
-        // 获取事件名和回调函数
+    /*
+    *  @ 解析事件指令，将对应函数绑定到元素节点上
+    *  @ node 事件需要绑定到的元素
+    *  @ exp 函数名
+    *  @ dir 指令、事件名，如click
+    * */
+    compileEvent (node, exp, dir) {
+        // 将真实需要绑定的事件剥离出关键词，如 on:click => click
         let eventName = dir.split(':')[1]
         let cb = null
-        if (vm.methods) {
-            cb = vm.methods[exp]
+        if (this.vm.methods) {
+            cb = this.vm.methods[exp]
         }
         // 添加事件监听
         if (eventName && cb) {
-            node.addEventListener(eventName, cb.bind(vm), false)
+            /*
+            *  @ method name
+            *  @ callback：需要将this指向到当前的组件实例，否则默认this会指向元素节点，导致函数失效
+            *  @ 是否在捕获或者冒泡阶段执行
+            *  @ addEventListener带参数会默认执行一次,因此不可以  node.addEventListener(eventName, cb.call(this.vm,node))
+            * */
+            function event() {
+                return cb.call(this.vm,node)
+            }
+            node.addEventListener(eventName, event.bind(this))
         }
     }
 
-    compileModel (node, vm, exp, dir) {
-        // 数据->html
-        let val = this.vm[exp]
-        this.modelUpdater(node, val)
-        new Watcher(this.vm, exp, value => {
-            this.modelUpdater(node, value)
+    compileModelAll(node, exp, dir){
+        if(dir === 'model'){
+            this.compileModel(node, exp, dir)
+        }
+        else if(dir === 'show'){
+            this.compileShow(node, exp, dir)
+        }
+    }
+
+    /*
+    *  @ 解析一般指令，目前只有c-model
+    *  @ node 指令所在元素
+    *  @ exp 指令绑定的data属性名
+    *  @ dir 指令名，如model
+    * */
+    compileModel (node, exp, dir) {
+        // let val = this.vm[exp]
+        let val = _deepPath(this.vm,exp)   // 组件实例化时，预定义数据的初始值
+        // 这里是为model指令对象设置初初始值，并可以利用_isDOMTagname(node)，根据不同元素进行针对性处理
+        this.modelUpdater(node, val);
+        /*
+        *  @ 借助watch,将指令和data关联起来；回调作用：更新视图
+        *  @ 1 触发watch实例的get
+        *  @ 2 设置Dep.target为当前watch实例，并主动触发data的getter
+        *  @ 3 dep.addSub(watch实例)
+        *  @ 4 data进行set时，dep调用所有的watcher实例的视图更新回调函数
+        * */
+        new Watcher(this.vm, exp, (val) => {
+            this.modelUpdater(node, val)
         })
 
-        // html 事件->数据
         node.addEventListener('input', (e) => {
             let newValue = e.target.value
             if (val === newValue) {
                 return
             }
-            this.vm[exp] = newValue
-            val = newValue
+            // 多层嵌套属性的赋值
+            let res = 'this.vm',
+                paths = exp.split('.');
+            paths.forEach(function (item) {
+                res += "['"+item+"']";
+            })
+            // this.vm[exp] = newValue
+            eval(res+' = newValue')
         })
     }
 
-    modelUpdater (node, value, oldValue) {
-        node.value = typeof value === 'undefined' ? '' : value
+    compileShow (node, exp, dir) {
+
+        let show = ''
+        // shou表达式的第一次取值
+        if(exp.indexOf('=')){
+            let exps = exp.split('='),
+                show = this.vm[_trim(exps[0])];
+        }else{
+            show = this.vm[exp]
+        }
+        // 设置初始渲染的默认值
+        this.showUpdate(node, show)
+        /*
+       *  @ 借助watch,将指令和data关联起来
+       *  @ 回调作用：更新视图
+       * */
+        new Watcher(this.vm, exp, (val) => {
+            this.showUpdate(node, val)
+        })
+    }
+
+
+    /*
+    *  @ 初始化和设置指令元素的value：但是 v-model 仅能应用在input这些含有value的元素节点上
+    *  @ node model指令绑定的元素
+    *  @ value 需要设置的值
+    * */
+    modelUpdater (node, value,oldValue) {
+        node.value = value || ''
     }
 
     compileText (node, exp) {
-        let text = this.vm[exp]
-        // 先更新一次文本
-        this.updateText(node, text)
-        // 使用数据响应系统
+        // let text = this.vm[exp]
+        let text = _deepPath(this.vm,exp)
+        // 设置初始渲染的默认值
+        this.textUpdate(node, text)
+        /*
+        *  @ 借助watch,将指令和data关联起来
+        *  @ 回调作用：更新视图
+        * */
         new Watcher(this.vm, exp, (val) => {
-            this.updateText(node, val)
+            this.textUpdate(node, val)
         })
     }
 
-    updateText (node, value) {
-        node.textContent = typeof value === 'undefined' ? '' : value
+    /*
+    *  @ 初始化和设置文本节点的textContent
+    *  @ node 插值内容所在文本节点
+    *  @ value 需要设置的值
+    * */
+    textUpdate (node, value) {
+        node.textContent =  value || ''
     }
 
-    isDirective (attr) {
-        return attr.indexOf('v-') === 0
+    showUpdate (node, value) {
+        // console.log('value    >>    ',value)
+        // let res = eval("console.log('函数构造器nei   ',value);return !!value")
+        // // let res = new Function('', " console.log('函数构造器nei   ',value);return !!value");
+        // console.log('函数构造器 2  ',res())
+        node.style.display = !!value ? '' : 'none';
     }
 
-    isEventDirective (dir) {
-        return dir.indexOf('on:') === 0
-    }
 
-    isElementNode (node) {
-        return node.nodeType === 1
-    }
-
-    isTextNode (node) {
-        return node.nodeType === 3
-    }
 }
 
 
