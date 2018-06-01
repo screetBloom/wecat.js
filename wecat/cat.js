@@ -19,11 +19,13 @@ export default class Cat {
         !!options.beforeCreated && options.beforeCreated.call(this)
 
         /*
-        *  @ 初始化时挂载预定义的数据和函数
+        *  @ 初始化时挂载预定义的数据和函数，和监视属性
         * */
         this.data = options.data || {}
-        this.methods = options.methods
+        this.methods = options.methods || {}
+        this.watch = options.watch || {}
         this.el = options.el
+        if(!this.el) throw 'please declare a el' ;
 
         /*
         *  @ 子组件的挂载
@@ -39,8 +41,9 @@ export default class Cat {
 
         /*
         *  @ 为组件实例的每一个data属性都设置getter、setter => 实现监听数据变化
+        *  @ 将watch属性监视的数据注入进去，变化时，执行回调
         * */
-        new Observer(this.data)
+        new Observer(this.data,this.watch,this)
 
         /*
         *  @ 结合传入的数据编译和渲染当前组件的模板
@@ -64,34 +67,32 @@ export default class Cat {
 
         let el = document.querySelector(this.el)
         let pChildNodes = Array.from(el.childNodes),
-            pChildTags = [],
-            _el = el,
-            res = [];
+            pChildTags = [];
+        /*
+        *  @ 组件化关键：将父组件下的所有标签名检索出来，用于下一步与自定义组件相匹配
+        * */
         pChildNodes.forEach((node) =>  {
             // 元素标签
             if(!!node.tagName ){
                 pChildTags.push(_isDOMTagname(node))
                 if(node.firstChild){
-                    // 对模板具有子节点的元素进行深度优先遍历
-                    res = res.concat(this.walkNode(node))
+                    // 对模板具有子节点的元素进行深度优先遍历并合并模板的一级节点tagNama和子节点tagName
+                    pChildTags = pChildTags.concat(this.walkNode(node))
                 }
             }
         })
-        // 合并模板的一级节点tagNama和子节点tagName
-        pChildTags = pChildTags.concat(res)
-        console.log('pchild >    ',pChildTags)
 
         Object.keys(components).forEach( (key) => {
             // 当前父组件中声明了子组件
             if(pChildTags.includes(key)){
-                // console.log(pChildTags)
                 let oldNode = document.querySelector(key),
                     newNode = document.createElement('div');
                 newNode.innerHTML = components[key].template;
-                _el.replaceChild(_node2Fragment(newNode), oldNode);
+                // 关键一步：获取自定义标签的父节点，将父节点内的自定义标签替换为组件内容
+                oldNode.parentNode.replaceChild(_node2Fragment(newNode), oldNode);
                 // 将子组件的数据和方法混入父组件
-                this.data = Object.assign(this.data,components[key].data||{})
-                this.methods = Object.assign(this.methods,components[key].methods||{})
+                this.data = Object.assign(this.data || {},components[key].data||{})
+                this.methods = Object.assign(this.methods || {},components[key].methods||{})
             }
         })
     }
@@ -182,14 +183,16 @@ class componentGenerator {
 *  @ 实现一个监听器Observer，用来劫持并监听所有属性，如果有变动的，就通知订阅者
 * */
 class Observer {
-    constructor (data) {
+    constructor (data,watch,vm) {
         /*
         *  @ 将组件的data挂载到ob实例上
         *  @ 遍历data数据
+        *  @ 挂载 监听变化 回调
         * */
         this.data = data
+        this.watch = watch
+        this.vm = vm
         this.walk(data)
-        this.dep = ''
     }
 
     walk (data) {
@@ -213,9 +216,14 @@ class Observer {
 
     defineReactive (data, key, val) {
         // 为每一个data创建一个依赖收集中心Dep 实例，初次渲染时，dep.targe为null
-        let dep = new Dep();
-        // 便于数组变动时进行唤醒
-        // this.dep = dep;
+        let dep = new Dep(),
+            cb = '',
+            _this = this;
+        Object.keys(this.watch).forEach((k) => {
+            if(k === key){
+                cb = this.watch[key]
+            }
+        })
         // 建立 data 和 Dep 的联系
         Object.defineProperty(data, key, {
             enumerable: true,
@@ -228,8 +236,12 @@ class Observer {
                 return val
             },
             set (newVal) {
-                // console.log('newvalue >>>  ',newVal)
                 if (newVal === val) return
+                /*
+                *  @ 如果该对象被监听了，那么执行监听回调
+                *  @ 这里是否需要考虑订阅者和监听函数执行的时机问题
+                * */
+                !!cb && cb.call(_this.vm,newVal,val)
                 val = newVal
                 // 通知当前属性的所有订阅者
                 dep.notify()
@@ -240,8 +252,7 @@ class Observer {
     observeArray(arr,callback) {
         // 复制数组的原型方法,防止污染
         const arrayProto = Array.prototype,
-              hackProto = Object.create(Array.prototype),
-              _this = this;
+            hackProto = Object.create(Array.prototype);
         // 对数组的7个方法进行监控
         [
             'push',
@@ -261,7 +272,6 @@ class Observer {
                     let old = arr.slice(0)
                     let now = arrayProto[method].call(this, ...arg)
                     console.log('数组发生了改变  ',...arg)
-                    // this.dep.notify(22)
                     !!callback && callback()
                     return now
                 },
@@ -326,7 +336,6 @@ class Watcher {
         if(paths.length>1){
             // value = this.vm[paths[0]][paths[1]]
             value = _deepPath(this.vm,this.exp)
-            console.log('test2   ',value)
         }else{
             // show的表达式写法
             if(this.exp.indexOf('=')){
@@ -396,6 +405,7 @@ class Compile {
             /*
             *  @ 解析模板指令、插值表达式
             * */
+
             this.compileElement(this.fragment)
             // 使用节点
             this.el.appendChild(this.fragment)
@@ -531,13 +541,16 @@ class Compile {
         })
     }
 
+    /*
+    *  @ 还应该支持表达式和直接输入true、false的形式
+    *  @ 可以利用函数构造器或者eval 需要继续提升、润色
+    * */
     compileShow (node, exp, dir) {
-
-        let show = ''
-        // shou表达式的第一次取值
-        if(exp.indexOf('=')){
-            let exps = exp.split('='),
-                show = this.vm[_trim(exps[0])];
+        let show = '';
+        // show表达式的第一次取值
+        if(exp.indexOf('=')>=0){
+            let exps = exp.split('=');
+            show = this.vm[_trim(exps[0])];
         }else{
             show = this.vm[exp]
         }
@@ -586,7 +599,6 @@ class Compile {
     }
 
     showUpdate (node, value) {
-        // console.log('value    >>    ',value)
         // let res = eval("console.log('函数构造器nei   ',value);return !!value")
         // // let res = new Function('', " console.log('函数构造器nei   ',value);return !!value");
         // console.log('函数构造器 2  ',res())
