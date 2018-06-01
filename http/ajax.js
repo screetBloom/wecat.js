@@ -474,3 +474,4 @@ export function fetch(url, opt){
     })
 }
 ajax.fetch = fetch;
+
