@@ -109,6 +109,9 @@ module.exports = () => {
 - HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
     - HTMLLinkElement
 - Shadow DOM: 处理组件间代码隔离的问题
+<br>
+**简单介绍组件遍历**
+![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
 
 
 1.0综合实现示意图
