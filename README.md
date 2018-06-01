@@ -2,6 +2,13 @@
 ![](https://img.shields.io/badge/%E8%84%9A%E6%89%8B%E6%9E%B6cli-0.0.1%7Cnode%7Cnpm%7Ccommander%7Cgit-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8Etemplate-0.0.1%7Creg%7Cnew%20Function-brightgreen.svg)    
 ![](https://img.shields.io/badge/%E8%B7%AF%E7%94%B1router-1.0.0%7Chash%7Clazy%20load%7Chook%20function-brightgreen.svg)   
+![](https://img.shields.io/badge/c--model-wecat.js1.0-brightgreen.svg)         
+![](https://img.shields.io/badge/c--show-wecat.js1.0-brightgreen.svg)       
+![](https://img.shields.io/badge/%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F-wecat.js1.0-brightgreen.svg)         
+![](https://img.shields.io/badge/watch%E7%9B%91%E6%B5%8B%E6%95%B0%E6%8D%AE-wecat.js1.0-brightgreen.svg)         
+![](https://img.shields.io/badge/%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F-wecat.js1.0-brightgreen.svg)         
+ 
+      
 
 Vue.js科学阅读方式 => [从阅读Vue的第一个commit开始](https://github.com/screetBloom/wecat.js/tree/master/How_to_read_Vue_correctly)
 
@@ -113,7 +120,7 @@ virtual-template结合virtual-dom简单示意图
 - Shadow DOM: 处理组件间代码隔离的问题      
 
 **我们一定要利用浏览器的组件化标准草案去做组件化吗？**        
-我采取了这种解决方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件的template内容；再将子组件作用域指向子组件       
+我采取了另外一种解决方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件的template内容；再将子组件作用域指向子组件       
 下面这幅图主要是简单介绍一下当前在做组件遍历时采用的方法：    
 
 ![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
