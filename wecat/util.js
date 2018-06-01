@@ -37,7 +37,7 @@ export function _trim(str) {
 }
 
 /*
-*  @ 自己封装的继承函数
+*  @ 自己封装的继承函数，详情原理看： http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html
 *  @ child继承parent
 * */
 export function _extend(Child, Parent) {
@@ -74,6 +74,7 @@ export function _isDirective(attr) {
 export function _isEventDirective (dir) {
     return dir.indexOf('on:') === 0
 }
+
 
 export function _node2Fragment (el) {
     let fragment = document.createDocumentFragment()

@@ -379,7 +379,6 @@ class Watcher {
             this.cb.call(this.vm, value, oldValue)
         }
     }
-
 }
 
 /*
