@@ -122,8 +122,8 @@ virtual-template结合virtual-dom简单示意图
 
 1.0综合实现示意图
 ---
-**初始小demo**    
-![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FvjdO6Dpd8dKIizCzcsI5zhvygpd)  
+**目前框架流程图，还比较粗糙**    
+![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FlPWkwa-hNjhdMEHT49949azsKT7)  
 
 
 
