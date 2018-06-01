@@ -37,7 +37,7 @@ export function _trim(str) {
 }
 
 /*
-*  @ 自己封装的继承函数，详情原理看： http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html
+*  @ 自己封装的继承函数
 *  @ child继承parent
 * */
 export function _extend(Child, Parent) {
