@@ -112,7 +112,7 @@ virtual-template结合virtual-dom简单示意图
 
 **我们一定要利用浏览器的组件化标准草案去做组件化吗**        
 还有其它的解决方式，可以利用实现H5的自定义标签名去实现；在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件的template内容；再将子组件的data和methods作用域指向子组件           
-**简单介绍组件遍历**    
+下面这幅图主要是简单介绍一下当前在做组件遍历时采用的方法：    
 
 ![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
 
