@@ -75,7 +75,6 @@ export function _isEventDirective (dir) {
     return dir.indexOf('on:') === 0
 }
 
-
 export function _node2Fragment (el) {
     let fragment = document.createDocumentFragment()
     let child = el.firstChild
