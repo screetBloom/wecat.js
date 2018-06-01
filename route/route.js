@@ -137,5 +137,5 @@
 
 	}
 	//注册到window全局
-	window._$router = new spaRouters();
+	window.$router = new spaRouters();
 })()

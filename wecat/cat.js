@@ -375,7 +375,6 @@ class Watcher {
             // 为data设置最新的值
             this.value = value
             // 给回调函数绑定作用域
-            // console.log('cb  >>> ',this.cb)
             this.cb.call(this.vm, value, oldValue)
         }
     }

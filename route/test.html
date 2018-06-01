@@ -33,30 +33,30 @@
 	<p style="color:#333">默认首页内容</p>
 </div>
 <script type="text/javascript">
-	_$router.map('/index', function (transition) {
+	$router.map('/index', function (transition) {
         this.loadFile('js/index.js', transition)
 	})
-    _$router.map('/list', function (transition) {
+    $router.map('/list', function (transition) {
         this.loadFile('js/list.js', transition)
 	})
-    _$router.map('/detail', function (transition) {
+    $router.map('/detail', function (transition) {
 		this.loadFile('js/detail.js', transition)
 	})
-    _$router.map('/detail2', function (transition) {
+    $router.map('/detail2', function (transition) {
 		this.loadCb(function (transition) {
 			document.getElementById("content").innerHTML = '<p style="color:#DD8C6F;">当前同步渲染详情页  >>>  ' + JSON.stringify(transition) + '</p>'
 		}, transition)
 	})
-    _$router.beforeEach(function (transition) {
+    $router.beforeEach(function (transition) {
 		console.log('路由切换之前的钩子函数')
 		setTimeout(function () {
 			transition.next()
 		}, 100)
 	})
-    _$router.afterEach(function (transition) {
+    $router.afterEach(function (transition) {
 		console.log("路由切换之后的钩子函数")
 	})
-    _$router.init()
+    $router.init()
 
 
 </script>
