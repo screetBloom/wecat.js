@@ -78,8 +78,8 @@ module.exports = () => {
      
 2.响应式实现
 ---
-**此图有误，暂未更新；往下看，有整体的流程图**
-![响应式实现示意图](http://7xl4c6.com1.z0.glb.clouddn.com/Fu3WDr8EtxG0pGJgWA1USXzLBuc_)     
+**简单示意；往下看，有整体的流程图**
+![响应式实现示意图](http://7xl4c6.com1.z0.glb.clouddn.com/FselYryU-RVQc4Bb4wnh4Uu81Q8N)     
 思路：   
 - 采用方法使对象是可观察变化的
 - 观察对象所有属性
