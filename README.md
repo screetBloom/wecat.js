@@ -111,7 +111,7 @@ virtual-template结合virtual-dom简单示意图
 - Shadow DOM: 处理组件间代码隔离的问题      
 
 **我们一定要利用浏览器的组件化标准草案去做组件化吗**        
-还有其它的解决方式，可以利用实现H5的自定义标签名去实现；在子组件遍历时，将标签名和导入组件名一样的标签内容替换成已声明子组件的template内容；再将子组件的data和methods作用域指向子组件
+还有其它的解决方式，可以利用实现H5的自定义标签名去实现；在子组件遍历时，将标签名和导入组件名一样的标签内容替换成已声明子组件的template内容；再将子组件的data和methods作用域指向子组件           
 **简单介绍组件遍历**    
 
 ![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
