@@ -15,7 +15,7 @@ Vue.js科学阅读方式 => [从阅读Vue的第一个commit开始](https://githu
 wecat.js => 核心：基于响应式的组件系统
 ---
 
-现在源码还很乱，写的挺差的的；如果感兴趣看一下下面的示意图，大概实现思路都在图中。
+现在源码还很乱，写的挺差的的；如果感兴趣看一下下面的示意图，大概实现思路都在图中。最下面有目前的demo
 
 包含内容：
 - 脚手架 
@@ -131,7 +131,9 @@ virtual-template结合virtual-dom简单示意图
 **目前框架流程图，还比较粗糙**    
 ![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FlPWkwa-hNjhdMEHT49949azsKT7)  
 
-
+**目前框架简单实现的demo**           
+[demo地址在这](http://115.159.100.155/wecat/index.html)     
+![1.0demo](http://7xl4c6.com1.z0.glb.clouddn.com/FjcK_mwvQtcBc7SzPSFhbkFi6SsK)
 
 
 
