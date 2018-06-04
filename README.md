@@ -37,6 +37,7 @@ npm install -g snowcat
 snowcat init
 ```        
 
+
 ####  0.0.1版本完整代码
 **snowcat.js**
 ```bash
