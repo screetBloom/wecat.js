@@ -116,12 +116,9 @@ virtual-template结合virtual-dom简单示意图
     - registerElement(需用"-"连接)
     - 生命周期和回调
     - 扩展元素
-<br>
 - 2 HTML Templates: 组件模板
-<br>
 - 3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
     - HTMLLinkElement
-<br>
 - 4 Shadow DOM: 处理组件间代码隔离的问题          
 
 **我们一定要利用未全面普及浏览器的组件化标准草案去做组件化吗？**        
