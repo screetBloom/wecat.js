@@ -20,11 +20,17 @@ wecat.js => 核心：基于响应式的组件系统
 
 包含内容：
 - 脚手架 
+- 响应式
 - 数据和模板渲染
 - 路由
-- 通信组件
+- 组件化
 - http请求组件 
 - UI类库
+
+wecat.js1.0综合实现示意图
+---
+**目前框架流程图，还比较粗糙**    
+![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FlPWkwa-hNjhdMEHT49949azsKT7)  
 
 1.脚手架的实现
 ---  
@@ -38,7 +44,7 @@ snowcat init
 ```        
 
 
-####  0.0.1版本完整代码
+####  0.0.1版本脚手架完整代码
 **snowcat.js**
 ```bash
 #!/usr/bin/env node
@@ -83,8 +89,6 @@ module.exports = () => {
 
 }
 ```
-
-
      
      
 2.响应式实现
@@ -97,12 +101,31 @@ module.exports = () => {
 - 对属性进行读时，收集依赖关系
 - 对属性进行写时，更新视图
 
-3.模板引擎
+3.Web Components 
+---
+#### 3.1 浏览器规范"web Components"
+- 3.1.1 Custom Elements: 提供自定义元素和标签的能力
+    - registerElement(需用"-"连接)
+    - 生命周期和回调
+    - 扩展元素
+- 3.1.2 HTML Templates: 组件模板
+- 3.1.3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
+    - HTMLLinkElement
+- 3.1.4 Shadow DOM: 处理组件间代码隔离的问题          
+
+#### 3.2 自己实现的"web Components"
+**我们一定要利用未全面普及浏览器的组件化标准草案去做组件化吗？**        
+在wecat.js中我采取了另外一种geek的实现方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件内容；再将子组件作用域指向子组件       
+下面这幅图主要是简单介绍一下当前在做组件遍历时采用的方法：    
+
+![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
+
+4.模板引擎
 ---
 virtual-template结合virtual-dom简单示意图       
 ![虚拟模板结合虚拟dom示意图](http://7xl4c6.com1.z0.glb.clouddn.com/Fpq5bEp2oZPPBXPsHwpFc1wshiOj)  
 
-4.路由
+5.路由
 ---
 路由属于已经开发结束的，但是目前没有更多的精力进行这一块的详细讲述，主要还是集中在框架剩余功能的开发上；一个框架首先不管怎么样要能跑起来    
 另外，一旦组件化和数据渲染的方式向virtual-dom靠拢，路由需要跟着进行对应的修改，目前的路由还不满足virtual-dom的渲染要求          
@@ -110,30 +133,10 @@ virtual-template结合virtual-dom简单示意图
 **目前简单的方式：**    
 ![路由1.0流程示意图](http://7xl4c6.com1.z0.glb.clouddn.com/Fiz-dYfMNS0FZH70iGbZ45cZnMrV)  
 
-5.Web Components 
----
-#### 5.1 浏览器规范"web Components"
-- 5.1.1 Custom Elements: 提供自定义元素和标签的能力
-    - registerElement(需用"-"连接)
-    - 生命周期和回调
-    - 扩展元素
-- 5.1.2 HTML Templates: 组件模板
-- 5.1.3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
-    - HTMLLinkElement
-- 5.1.4 Shadow DOM: 处理组件间代码隔离的问题          
-
-#### 5.2 自己实现的"web Components"
-**我们一定要利用未全面普及浏览器的组件化标准草案去做组件化吗？**        
-在wecat.js中我采取了另外一种geek的实现方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件内容；再将子组件作用域指向子组件       
-下面这幅图主要是简单介绍一下当前在做组件遍历时采用的方法：    
-
-![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
 
 
-wecat.js1.0综合实现示意图
----
-**目前框架流程图，还比较粗糙**    
-![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FlPWkwa-hNjhdMEHT49949azsKT7)  
+
+
      
 
 
