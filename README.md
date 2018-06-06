@@ -112,14 +112,17 @@ virtual-template结合virtual-dom简单示意图
 
 5.Web Components 
 ---
-- 1 Custom Elements: 提供自定义元素和标签的能力
+1 Custom Elements: 提供自定义元素和标签的能力
     - registerElement(需用"-"连接)
     - 生命周期和回调
     - 扩展元素
-- 2 HTML Templates: 组件模板
-- 3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
+<br>
+2 HTML Templates: 组件模板
+<br>
+3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
     - HTMLLinkElement
-- 4 Shadow DOM: 处理组件间代码隔离的问题      
+<br>
+4 Shadow DOM: 处理组件间代码隔离的问题          
 
 **我们一定要利用未全面普及浏览器的组件化标准草案去做组件化吗？**        
 我采取了另外一种geek的实现方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件内容；再将子组件作用域指向子组件       
