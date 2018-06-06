@@ -112,23 +112,25 @@ virtual-template结合virtual-dom简单示意图
 
 5.Web Components 
 ---
-- 1 Custom Elements: 提供自定义元素和标签的能力
+#### 5.1 浏览器规范"web Components"
+- 5.1.1 Custom Elements: 提供自定义元素和标签的能力
     - registerElement(需用"-"连接)
     - 生命周期和回调
     - 扩展元素
-- 2 HTML Templates: 组件模板
-- 3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
+- 5.1.2 HTML Templates: 组件模板
+- 5.1.3 HTML Imports: 支持/提供在 HTML 中合理引入组件的方式
     - HTMLLinkElement
-- 4 Shadow DOM: 处理组件间代码隔离的问题          
+- 5.1.4 Shadow DOM: 处理组件间代码隔离的问题          
 
+#### 5.2 自己实现的"web Components"
 **我们一定要利用未全面普及浏览器的组件化标准草案去做组件化吗？**        
-我采取了另外一种geek的实现方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件内容；再将子组件作用域指向子组件       
+在wecat.js中我采取了另外一种geek的实现方式： 利用H5的自定义标签实现，在子组件遍历时，将标签名和导入组件名一致的标签内容替换成已声明子组件内容；再将子组件作用域指向子组件       
 下面这幅图主要是简单介绍一下当前在做组件遍历时采用的方法：    
 
 ![组件遍历方式](http://7xl4c6.com1.z0.glb.clouddn.com/Fk_gXH-Is7pneNWTJf9XqlMvVEyT)
 
 
-1.0综合实现示意图
+wecat.js1.0综合实现示意图
 ---
 **目前框架流程图，还比较粗糙**    
 ![框架流程图](http://7xl4c6.com1.z0.glb.clouddn.com/FlPWkwa-hNjhdMEHT49949azsKT7)  
