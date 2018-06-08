@@ -135,7 +135,10 @@ virtual-template结合virtual-dom简单示意图
 
 
 
+License
+---
 
+The MIT License (MIT)
 
      
 
