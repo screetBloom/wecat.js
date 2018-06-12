@@ -18,6 +18,7 @@ export default class Cat {
         * */
         !!options.beforeCreated && options.beforeCreated.call(this)
 
+
         /*
         *  @ 初始化时挂载预定义的数据和函数，和监视属性
         * */
