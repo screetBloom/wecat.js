@@ -7,7 +7,7 @@ let host = window.location.host;
 let hasFetch = !!window.fetch;
 
 /**
- * 绑定函数
+ * 绑定函数 http
  * @returns {Function}
  */
 function bindFun() {
