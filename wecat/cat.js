@@ -23,6 +23,7 @@ export default class Cat {
         * */
         this.data = options.data || {}
         this.methods = options.methods || {}
+        // 监视数据的改变，实时回调
         this.watch = options.watch || {}
         this.el = options.el
         if(!this.el) throw 'please declare a el' ;
