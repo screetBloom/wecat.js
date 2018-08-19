@@ -16,8 +16,9 @@ wecat.js => 核心：基于响应式的组件系统
 ---
 
 现在源码还很乱，写的挺差的的；如果感兴趣看一下下面的示意图，大概实现思路都在图中。           
-**目前框架简单实现的demo**,[demo地址在这](http://115.159.100.155/wecat/index.html)     
-demo示意图
+目前框架简单实现的demo,[demo地址在这](http://115.159.100.155/wecat/index.html)     
+**demo示意图**
+<br>
 ![demo](http://oowv4l1s8.bkt.clouddn.com/demo2.png)
 
 包含内容：
